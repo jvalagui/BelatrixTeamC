@@ -1,4 +1,4 @@
 
 public class ClasePrueba {
-	int numero = 9;
+	int numero = 8;
 }
