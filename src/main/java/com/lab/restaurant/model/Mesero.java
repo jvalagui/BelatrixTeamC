@@ -6,13 +6,19 @@ import java.util.List;
 
 public class Mesero extends Persona{
 	
+	private static int identityId;
 	private static List<Mesero> lista;
 	private boolean estado;
 	
 	public Mesero(){}
 
 	static{
+		identityId = 0;
 		lista = new ArrayList<>();
+	}
+	{
+		identityId++;
+		setId(identityId);
 	}
 	
 	public Mesero(int id, String nombre, boolean estado) {

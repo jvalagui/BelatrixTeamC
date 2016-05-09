@@ -5,16 +5,16 @@ import java.util.List;
 
 public class Cliente extends Persona{
 
-	
-@Override
-	public String toString() {
-		return "Cliente [getId()=" + getId() + ", getNombre()=" + getNombre() + "]\n";
-	}
-
-private static List<Cliente> lista;
+	private static int identityid;
+	private static List<Cliente> lista;
 	
 	static{
+		identityid = 0;
 		lista = new ArrayList<>();
+	}
+	{
+		identityid++;
+		setId(identityid);
 	}
 	
 	public Cliente(){}
@@ -77,4 +77,10 @@ private static List<Cliente> lista;
 		}
 		return result;
 	}
+	
+	@Override
+	public String toString() {
+		return "Cliente [getId()=" + getId() + ", getNombre()=" + getNombre() + "]\n";
+	}
+
 }
