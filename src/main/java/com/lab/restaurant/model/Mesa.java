@@ -61,31 +61,27 @@ public class Mesa {
 	
 	public static int update(Mesa reg){
 		int result = 0;
-		try{
-			for(Mesa x : read()){
-				if(x.getId() == reg.getId()){
-					x.setUsada(reg.isUsada());
-				}
+		
+		for(Mesa x : read()){
+			if(x.getId() == reg.getId()){
+				lista.set(lista.indexOf(x), reg);
+				result = 1;
 			}
-			result = 1;
-		}catch(Exception e){
-			e.printStackTrace();
 		}
+		
 		return result;
 	}
 	
 	public static int delete(int id){
 		int result = 0;
-		try{
-			for(Mesa x : read()){
-				if(x.getId() == id){
-					read().remove(x);
-				}
+		
+		for(Mesa x : read()){
+			if(x.getId() == id){
+				read().remove(x);
+				result = 1;
 			}
-			result = 1;
-		}catch(Exception e){
-			e.printStackTrace();
 		}
+		
 		return result;
 	}
 	

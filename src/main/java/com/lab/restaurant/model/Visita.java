@@ -78,14 +78,11 @@ public class Visita{
 	
 	public static int update(Visita reg) {
 		int result = 0;
-		
-		Visita v;
-		
-		for(int i=0; i<lista.size(); i++){
-			v = lista.get(i);
+				
+		for(Visita x : lista){
 			
-			if(v.getId() == reg.getId()){
-				lista.set(i, reg);
+			if(x.getId() == reg.getId()){
+				lista.set(lista.indexOf(x), reg);
 				result = 1;
 			}
 			
@@ -97,9 +94,9 @@ public class Visita{
 	public static int delete(Visita reg) {
 		int result = 0;
 		
-		for(Visita v : lista){
-			if(v.getId() == reg.getId()){
-				lista.remove(v);
+		for(Visita x : lista){
+			if(x.getId() == reg.getId()){
+				lista.remove(x);
 				result = 1;
 			}
 		}
