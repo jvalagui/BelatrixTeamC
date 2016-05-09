@@ -2,9 +2,6 @@ package main.java.com.lab.restaurant.model;
 
 class Persona {
 	
-<<<<<<< HEAD
-}
-=======
 	private int id;
 	private String nombre;
 	
@@ -30,4 +27,3 @@ class Persona {
 	}
 	
 }
->>>>>>> origin/EnterMatch
