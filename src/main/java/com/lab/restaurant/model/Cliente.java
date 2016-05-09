@@ -6,8 +6,12 @@ import java.util.List;
 public class Cliente extends Persona{
 
 	
+@Override
+	public String toString() {
+		return "Cliente [getId()=" + getId() + ", getNombre()=" + getNombre() + "]\n";
+	}
+
 private static List<Cliente> lista;
-	
 	
 	static{
 		lista = new ArrayList<>();
@@ -19,7 +23,7 @@ private static List<Cliente> lista;
 		super(id, nombre);
 	}
 
-	public int create(Cliente reg){
+	public static int create(Cliente reg){
 		int result = 0;
 		try{
 			lista.add(reg);
@@ -30,11 +34,11 @@ private static List<Cliente> lista;
 		return result;
 	}
 	
-	public List<Cliente> read(){
+	public static List<Cliente> read(){
 		return lista;
 	}
 	
-	public Cliente read(int id){
+	public static Cliente read(int id){
 		Cliente reg = null;
 		for(Cliente x : read()){
 			if(x.getId() == id){
@@ -44,12 +48,12 @@ private static List<Cliente> lista;
 		return reg;
 	}
 	
-	public int update(Cliente reg){
+	public static int update(Cliente reg){
 		int result = 0;
 		try{
 			for(Cliente x : read()){
 				if(x.getId() == reg.getId()){
-					x.setNombre(reg.getNombre());
+					lista.set(lista.indexOf(x), reg);
 				}
 			}
 			result = 1;
@@ -59,15 +63,15 @@ private static List<Cliente> lista;
 		return result;
 	}
 	
-	public int delete(int id){
+	public static int delete(int id){
 		int result = 0;
 		try{
 			for(Cliente x : read()){
 				if(x.getId() == id){
 					read().remove(x);
+					result = 1;
 				}
 			}
-			result = 1;
 		}catch(Exception e){
 			e.printStackTrace();
 		}

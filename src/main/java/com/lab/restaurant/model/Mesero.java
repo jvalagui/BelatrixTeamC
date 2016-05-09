@@ -28,7 +28,7 @@ public class Mesero extends Persona{
 
 	
 
-	public int create(Mesero reg){
+	public static int create(Mesero reg){
 		int result = 0;
 		try{
 			lista.add(reg);
@@ -39,11 +39,11 @@ public class Mesero extends Persona{
 		return result;
 	}
 	
-	public List<Mesero> read(){
+	public static List<Mesero> read(){
 		return lista;
 	}
 	
-	public Mesero read(int id){
+	public static Mesero read(int id){
 		Mesero reg = null;
 		for(Mesero x : read()){
 			if(x.getId() == id){
@@ -53,12 +53,12 @@ public class Mesero extends Persona{
 		return reg;
 	}
 	
-	public int update(Mesero reg){
+	public static int update(Mesero reg){
 		int result = 0;
 		try{
 			for(Mesero x : read()){
 				if(x.getId() == reg.getId()){
-					x.setNombre(reg.getNombre());
+					lista.set(lista.indexOf(x), reg);
 				}
 			}
 			result = 1;
@@ -68,19 +68,24 @@ public class Mesero extends Persona{
 		return result;
 	}
 	
-	public int delete(int id){
+	public static int delete(int id){
 		int result = 0;
 		try{
 			for(Mesero x : read()){
 				if(x.getId() == id){
 					read().remove(x);
+					result = 1;
 				}
 			}
-			result = 1;
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return result;
 	}
+	@Override
+	public String toString() {
+		return "Mesero [getId()=" + getId() + ", getNombre()=" + getNombre() + ", estado=" + estado + "]";
+	}
 
+	
 }
