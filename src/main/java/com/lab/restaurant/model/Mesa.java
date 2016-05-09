@@ -88,4 +88,11 @@ public class Mesa {
 		}
 		return result;
 	}
+	
+	@Override
+	public String toString() {
+		return "Mesa [id=" + id + ", usada=" + usada + "]";
+	}
+	
+	
 }

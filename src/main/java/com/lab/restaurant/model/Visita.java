@@ -106,6 +106,12 @@ public class Visita{
 		return result;
 		
 	}
+	@Override
+	public String toString() {
+		return "Visita [id=" + id + ", idCliente=" + idCliente + ", idMesero="
+				+ idMesero + ", estado=" + estado + ", idMesas=" + idMesas
+				+ "]";
+	}
 	
 
 	
