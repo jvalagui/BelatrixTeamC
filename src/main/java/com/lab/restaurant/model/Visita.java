@@ -7,7 +7,6 @@ public class Visita{
 	private static int identityId;
 	private int id;
 	private int idCliente;
-	private int idMesero;
 	private int estado;
 	private List<Integer> idMesas;
 
@@ -31,12 +30,6 @@ public class Visita{
 	}
 	public void setIdCliente(int idCliente) {
 		this.idCliente = idCliente;
-	}
-	public int getIdMesero() {
-		return idMesero;
-	}
-	public void setIdMesero(int idMesero) {
-		this.idMesero = idMesero;
 	}
 	public List<Integer> getIdMesas() {
 		return idMesas;
@@ -105,8 +98,7 @@ public class Visita{
 	}
 	@Override
 	public String toString() {
-		return "Visita [id=" + id + ", idCliente=" + idCliente + ", idMesero="
-				+ idMesero + ", estado=" + estado + ", idMesas=" + idMesas
+		return "Visita [id=" + id + ", idCliente=" + idCliente + ", estado=" + estado + ", idMesas=" + idMesas
 				+ "]";
 	}
 	

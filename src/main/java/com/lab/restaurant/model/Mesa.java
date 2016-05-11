@@ -8,6 +8,8 @@ public class Mesa {
 	private static int identityId;
 	
 	private int id;
+	private int capacidad;
+	private int idMesero;
 	private boolean usada;
 	
 	private static List<Mesa> lista;
@@ -26,6 +28,23 @@ public class Mesa {
 	public int getId() {
 		return id;
 	}
+	
+	public int getCapacidad() {
+		return capacidad;
+	}
+
+	public void setCapacidad(int capacidad) {
+		this.capacidad = capacidad;
+	}
+	
+	public int getIdMesero() {
+		return idMesero;
+	}
+
+	public void setIdMesero(int idMesero) {
+		this.idMesero = idMesero;
+	}
+
 	public boolean isUsada() {
 		return usada;
 	}
