@@ -8,7 +8,7 @@ public class Mesero extends Persona{
 	
 	private static int identityId;
 	private static List<Mesero> lista;
-	private static int mesasAtendidas;
+	public static final int limiteMesas = 5;
 	private boolean disponible;
 	
 	public Mesero(){}
@@ -27,14 +27,6 @@ public class Mesero extends Persona{
 		this.disponible = estado;
 	}
 	
-	public int getMesasAtendidas() {
-		return mesasAtendidas;
-	}
-
-	public void setMesasAtendidas(int mesasAtendidas) {
-		Mesero.mesasAtendidas = mesasAtendidas;
-	}
-
 	public boolean isDisponible() {
 		return disponible;
 	}

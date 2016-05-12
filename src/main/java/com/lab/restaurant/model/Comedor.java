@@ -7,9 +7,7 @@ public class Comedor{
 
 	private static List<Mesa> listaMesas = Mesa.read();
 	private static List<Mesero> listaMeseros = Mesero.read();
-	public static Queue queue2sillas = new Queue();
-	public static Queue queue4sillas = new Queue();
-	public static Queue queue6sillas = new Queue();
+	public static Queue queue = new Queue();
 	
 	public static List<Mesa> getMesasDisponibles(){
 		List<Mesa> disponibles = new ArrayList<>();
@@ -37,42 +35,31 @@ public class Comedor{
 		return disponibles;
 	}
 	
-	public static boolean mesaDisponible(int capacidad){
-		boolean disponible = false;
-		for(Mesa m : getMesasDisponibles()){
-			if(m.getCapacidad() == capacidad){
-				disponible = true;
-			}
-		}
-		return disponible;
-	}
-	
 	public static void asignarMesa(int idMesa, Visita visita){
 		Mesa mesa = Mesa.read(idMesa);
 		mesa.setUsada(true);
-		visita.getIdMesas().add(idMesa);
+		visita.setIdMesa(idMesa);
 	}
 	
-	public static void asignarMesero(int idMesero, int idMesa){
-		Mesa mesa = Mesa.read(idMesa);
-		mesa.setIdMesero(idMesero);
-		Mesero mesero = Mesero.read(idMesero);
-		mesero.setMesasAtendidas(mesero.getMesasAtendidas()+1);
+	public static boolean asignarMesero(int idMesero, int idMesa){
+		if(Mesa.cantidadAtendidasPorMesero(idMesero) <= Mesero.limiteMesas){
+			Mesa mesa = Mesa.read(idMesa);
+			mesa.setIdMesero(idMesero);
+			Mesero mesero = Mesero.read(idMesero);
+			return true;
+		}else{
+			System.out.println("El mesero ya llegó a su límite de mesas");
+			return false;
+		}
+		
 	}
 	
 	public static void despedirVisita(Visita visita){
-		liberarMesasyMeseros(visita);
+		Mesa mesa = Mesa.read(visita.getIdMesa());
+		mesa.setIdMesero(-1);
+		mesa.setUsada(false);
 		Visita.delete(visita);
 	}
 	
-	public static void liberarMesasyMeseros(Visita visita){
-		for(int x : visita.getIdMesas()){
-			Mesa mesa = Mesa.read(x);
-			Mesero mesero = Mesero.read(mesa.getIdMesero());
-			mesero.setMesasAtendidas(mesero.getMesasAtendidas()-1);
-			mesa.setIdMesero(-1);
-			mesa.setUsada(false);
-		}
-	}
 	
 }

@@ -23,9 +23,7 @@ public class Queue {
 		
 	public void remove(){
 		
-		for(int i = 0; i < queueArray.size() - 1; i++){
-			queueArray.set(i, queueArray.get(i+1));
-		}
+		queueArray.remove(0);
 		
 	}
 	
