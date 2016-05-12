@@ -8,7 +8,8 @@ public class Mesero extends Persona{
 	
 	private static int identityId;
 	private static List<Mesero> lista;
-	private boolean estado;
+	public static final int limiteMesas = 5;
+	private boolean disponible;
 	
 	public Mesero(){}
 
@@ -23,13 +24,14 @@ public class Mesero extends Persona{
 	
 	public Mesero(int id, String nombre, boolean estado) {
 		super(id, nombre);
-		this.estado = estado;
+		this.disponible = estado;
 	}
-	public boolean isEstado() {
-		return estado;
+	
+	public boolean isDisponible() {
+		return disponible;
 	}
-	public void setEstado(boolean estado) {
-		this.estado = estado;
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
 	}
 
 	
@@ -90,7 +92,7 @@ public class Mesero extends Persona{
 	}
 	@Override
 	public String toString() {
-		return "Mesero [getId()=" + getId() + ", getNombre()=" + getNombre() + ", estado=" + estado + "]";
+		return "Mesero [getId()=" + getId() + ", getNombre()=" + getNombre() + ", estado=" + disponible + "]";
 	}
 
 	

@@ -1,12 +1,20 @@
 package main.java.com.lab.restaurant.model;
 
 class Persona {
-	
+	private static int identityid;
 	private int id;
 	private String nombre;
 	
-	public Persona(){};
+	static{
+		identityid = 0;
+	}
 	
+	{
+		identityid++;
+		id = identityid;
+	}
+	
+	public Persona(){};
 	
 	public Persona(int id, String nombre) {
 		this.id = id;

@@ -8,6 +8,7 @@ public class Mesa {
 	private static int identityId;
 	
 	private int id;
+	private int idMesero;
 	private boolean usada;
 	
 	private static List<Mesa> lista;
@@ -26,6 +27,15 @@ public class Mesa {
 	public int getId() {
 		return id;
 	}
+	
+	public int getIdMesero() {
+		return idMesero;
+	}
+
+	public void setIdMesero(int idMesero) {
+		this.idMesero = idMesero;
+	}
+
 	public boolean isUsada() {
 		return usada;
 	}
@@ -84,6 +94,15 @@ public class Mesa {
 		
 		return result;
 	}
+	
+	public static int cantidadAtendidasPorMesero(int idMesero){
+		int c = 0;
+		for(Mesa x : lista){
+			if(x.getIdMesero() == idMesero){ c++; }
+		}
+		return c;
+	}
+	
 	
 	@Override
 	public String toString() {
