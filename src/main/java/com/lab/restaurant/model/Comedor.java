@@ -7,7 +7,6 @@ public class Comedor{
 
 	private static List<Mesa> listaMesas = Mesa.read();
 	private static List<Mesero> listaMeseros = Mesero.read();
-	public static Queue queue = new Queue();
 	
 	public static List<Mesa> getMesasDisponibles(){
 		List<Mesa> disponibles = new ArrayList<>();
@@ -51,9 +50,11 @@ public class Comedor{
 		
 	}
 	
-	public static void ingresarCola(Visita visita){
-		queue.insert(visita);
-	}
+	
+	
+	//public static void ingresarCola(Visita visita){
+	//	queue.insert(visita);
+	//}
 	
 	public static void despedirVisita(Visita visita){
 		Mesa mesa = Mesa.read(visita.getIdMesa());
