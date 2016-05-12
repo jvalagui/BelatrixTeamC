@@ -11,13 +11,11 @@ public class Comedor{
 	
 	public static List<Mesa> getMesasDisponibles(){
 		List<Mesa> disponibles = new ArrayList<>();
-		
 		for(Mesa m : listaMesas){
 			if(!m.isUsada()){
 				disponibles.add(m);
 			}	
 		}
-		
 		return disponibles;
 	}
 	
@@ -45,7 +43,6 @@ public class Comedor{
 		if(Mesa.cantidadAtendidasPorMesero(idMesero) <= Mesero.limiteMesas){
 			Mesa mesa = Mesa.read(idMesa);
 			mesa.setIdMesero(idMesero);
-			Mesero mesero = Mesero.read(idMesero);
 			return true;
 		}else{
 			System.out.println("El mesero ya llegó a su límite de mesas");
@@ -54,12 +51,14 @@ public class Comedor{
 		
 	}
 	
+	public static void ingresarCola(Visita visita){
+		queue.insert(visita);
+	}
+	
 	public static void despedirVisita(Visita visita){
 		Mesa mesa = Mesa.read(visita.getIdMesa());
 		mesa.setIdMesero(-1);
 		mesa.setUsada(false);
-		Visita.delete(visita);
 	}
-	
 	
 }
