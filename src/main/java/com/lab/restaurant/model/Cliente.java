@@ -17,10 +17,12 @@ public class Cliente extends Persona{
 		setId(identityid);
 	}
 	
-	public Cliente(){}
+	public Cliente(){
+		
+	}
 	
-	public Cliente(int id, String nombre) {
-		super(id, nombre);
+	public Cliente(String nombre) {
+		super(nombre);
 	}
 
 	public static int create(Cliente reg){
