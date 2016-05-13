@@ -24,6 +24,10 @@ public class Mesa {
 		setUsada(false);
 	}
 	
+	public Mesa(){
+		
+	}
+	
 	public int getId() {
 		return id;
 	}

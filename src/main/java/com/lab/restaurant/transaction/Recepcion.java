@@ -1,6 +1,5 @@
 package main.java.com.lab.restaurant.transaction;
 
-import java.util.List;
 
 import main.java.com.lab.restaurant.model.Cliente;
 import main.java.com.lab.restaurant.model.Comedor;
@@ -9,43 +8,53 @@ import main.java.com.lab.restaurant.model.Mesero;
 import main.java.com.lab.restaurant.model.Queue;
 import main.java.com.lab.restaurant.model.Visita;
 
+
+
 public class Recepcion {
 	
 	public static Queue salaDeEspera = new Queue();
-	public Visita visita = new Visita();
-	public Mesa mesa = new Mesa();
-	public Mesero mesero = new Mesero();
+	public Cliente cliente = null;
+	public Visita visita = null;
 	
-	private static List<Visita> listaVisitas = Visita.read();
-	private static List<Mesa> listaMesas = Mesa.read();
 	
-	void generarVisita(Visita reg){
-		Visita.create(reg);
+	// Cliente nuevo
+	public void generarVisita(String nomCli){
+		cliente = new Cliente(nomCli);
+		Cliente.create(cliente);
+		visita = new Visita(cliente.getId());
+		Visita.create(visita);
 	}
 	
-	void registrarCliente(Cliente reg){
-		Cliente.create(reg);
+	// Cliente antiguo
+	public void generarVisita(int idCli){
+		visita = new Visita(idCli);
+		Visita.create(visita);
 	}
 	
-	void asignarMesa(){
+	public String asignarMesa(int idMesa){
+		String msg = "";
+		Mesa mesa = Mesa.read(idMesa);
 		if(!Comedor.lleno()){
 			if(mesa.isUsada() == false ){
-				Comedor.asignarMesa(mesa.getId(), visita);
-				Comedor.asignarMesero(mesa.getIdMesero(), mesa.getId());
+				Comedor.asignarMesa(idMesa, visita);
+				Comedor.asignarMesero(Mesero.obtenerMesero().getId(), idMesa);
+				msg = "Mesa asignada";
+			}else{
+				msg = "La mesa se encuentra ocupada";
 			}
 		}else{
 			salaDeEspera.insert(visita);
+			msg = "Visita ingresada a la sala de espera";
 		}
+		return msg;
 	}
 	
-	void asignarDeSala(){
+	public void asignarDeSala(int idMesa){
 		visita = salaDeEspera.peek();
-		Comedor.asignarMesa(mesa.getId(), visita);
-		Comedor.asignarMesero(mesa.getIdMesero(), mesa.getId());
+		Comedor.asignarMesa(idMesa, visita);
+		Comedor.asignarMesero(Mesero.obtenerMesero().getId(), idMesa);
 		salaDeEspera.remove();
 	}
 	
-	//public static void ingresarCola(Visita visita){
-	//	salaDeEspera.insert(visita);
-	//}
+	
 }

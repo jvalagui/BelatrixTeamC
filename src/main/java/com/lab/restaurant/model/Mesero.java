@@ -20,11 +20,11 @@ public class Mesero extends Persona{
 	{
 		identityId++;
 		setId(identityId);
+		setDisponible(true);
 	}
 	
-	public Mesero(int id, String nombre, boolean estado) {
-		super(id, nombre);
-		this.disponible = estado;
+	public Mesero(String nombre) {
+		super(nombre);
 	}
 	
 	public boolean isDisponible() {
@@ -90,6 +90,21 @@ public class Mesero extends Persona{
 		}
 		return result;
 	}
+	
+	// Retorna uno de los meseros menos ocupados
+	 public static Mesero obtenerMesero(){
+		 List<Mesero> meseros = new ArrayList<Mesero>();
+		 meseros.add(Mesero.read(0));
+	 	 for(Mesero x : lista){
+		   int mesasM = Mesa.cantidadAtendidasPorMesero(meseros.get(0).getId());
+		   int mesasX = Mesa.cantidadAtendidasPorMesero(x.getId());
+		   if(mesasX < mesasM){
+			   meseros.set(0, x);
+		   }
+	 	 }
+	 	 return meseros.get(0);
+	 }
+	
 	@Override
 	public String toString() {
 		return "Mesero [getId()=" + getId() + ", getNombre()=" + getNombre() + ", estado=" + disponible + "]";

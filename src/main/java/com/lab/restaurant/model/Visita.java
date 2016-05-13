@@ -22,6 +22,14 @@ public class Visita{
 		id = identityId;
 	}
 	
+	public Visita(){
+		
+	}
+	
+	public Visita(int idCliente){
+		this.idCliente = idCliente;
+	}
+	
 	public int getId() {
 		return id;
 	}
