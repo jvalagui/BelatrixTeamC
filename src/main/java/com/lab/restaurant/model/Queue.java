@@ -23,14 +23,19 @@ public class Queue {
 		
 	public void remove(){
 		
-		queueArray.remove(0);
+		if(!isEmpty()){queueArray.remove(0);}
 		
 	}
 	
 	public Visita peek(){
-		return queueArray.get(0);
+		if(!isEmpty()){
+			return queueArray.get(0);
+		}
+		else {return null;}
 	}
 	
-	
+	public boolean isEmpty(){
+		return queueArray.isEmpty();
+	}
 
 }

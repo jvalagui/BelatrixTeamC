@@ -42,7 +42,7 @@ public class Cliente extends Persona{
 	public static int update(Cliente cliente){
 		int result = 0;
 	
-		for(Cliente reg: lista){
+		for(Cliente reg : lista){
 			if(reg.getId() == cliente.getId()){
 				lista.set(lista.indexOf(reg), cliente);
 				result = 1;
