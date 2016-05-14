@@ -12,9 +12,9 @@ import main.java.com.lab.restaurant.model.Visita;
 
 public class Recepcion {
 	
-	public static Queue salaDeEspera = new Queue();
-	public Cliente cliente = null;
-	public Visita visita = null;
+	private Queue salaDeEspera = new Queue();
+	private Cliente cliente = null;
+	private Visita visita = null;
 	
 	
 	// Cliente nuevo
