@@ -1,10 +1,11 @@
 package main.java.com.lab.restaurant.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente extends Persona{
 
-	private static List<Cliente> lista;
+	private static List<Cliente> lista = new ArrayList<Cliente>();
 	
 	public Cliente(){
 		

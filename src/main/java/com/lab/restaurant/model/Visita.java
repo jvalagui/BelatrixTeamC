@@ -1,5 +1,6 @@
 package main.java.com.lab.restaurant.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Visita{
@@ -8,13 +9,14 @@ public class Visita{
 	private int estado;
 	private int idMesa;
 
-	private static List<Visita> lista;
+	private static List<Visita> lista = new ArrayList<Visita>();
 	
 	public Visita(){
 		
 	}
 	
-	public Visita(int idCliente){
+	public Visita(int id,int idCliente){
+		this.id = id;
 		this.idCliente = idCliente;
 	}
 	

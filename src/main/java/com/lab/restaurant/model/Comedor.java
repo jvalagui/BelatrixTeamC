@@ -17,17 +17,11 @@ public class Comedor{
 	}
 	
 	public List<Mesa> getMesasDisponibles(){
-		List<Mesa> disponibles = new ArrayList<>();
-		for(Mesa m : listaMesas){
-			if(!m.isUsada()){
-				disponibles.add(m);
-			}	
-		}
-		return disponibles;
+		return Mesa.getMesasDisponibles();
 	}
 	
 	public Mesa obtenerMesaDisponible(){
-		return Mesa.read(((int)Math.random()*getMesasDisponibles().size()));
+		return Mesa.obtenerMesaDisponible();
 	}
 	
 	

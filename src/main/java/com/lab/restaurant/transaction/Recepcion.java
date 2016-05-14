@@ -24,13 +24,13 @@ public class Recepcion {
 	public void generarVisita(int idCliente, String nombreCliente){
 		cliente = new Cliente(idCliente, nombreCliente);
 		Cliente.create(cliente);
-		visita = new Visita(cliente.getId());
+		visita = new Visita(idCliente,cliente.getId());
 		Visita.create(visita);
 	}
 	
 	// Cliente antiguo
 	public void generarVisita(int idCliente){
-		visita = new Visita(idCliente);
+		visita = new Visita(idCliente,idCliente);
 		Visita.create(visita);
 	}
 	
@@ -38,6 +38,7 @@ public class Recepcion {
 		String msg = "";
 		Visita visita = Visita.read(idVisita);
 		Mesa mesa = comedor.obtenerMesaDisponible();
+		
 		if(!comedor.lleno()){
 			if(mesa.isUsada() == false ){
 				comedor.asignarMesa(mesa.getId(), visita);
@@ -50,6 +51,7 @@ public class Recepcion {
 			salaDeEspera.insert(visita);
 			msg = "Visita ingresada a la sala de espera";
 		}
+		
 		return msg;
 	}
 	

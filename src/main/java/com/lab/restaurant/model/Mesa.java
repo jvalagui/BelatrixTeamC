@@ -100,6 +100,19 @@ public class Mesa {
 		return c;
 	}
 	
+	public static List<Mesa> getMesasDisponibles(){
+		List<Mesa> disponibles = new ArrayList<>();
+		for(Mesa m : lista){
+			if(!m.isUsada()){
+				disponibles.add(m);
+			}	
+		}
+		return disponibles;
+	}
+	
+	public static Mesa obtenerMesaDisponible(){
+		return lista.get(((int)Math.random()*getMesasDisponibles().size()));
+	}
 	
 	@Override
 	public String toString() {
