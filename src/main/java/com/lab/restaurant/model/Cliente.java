@@ -25,14 +25,12 @@ public class Cliente extends Persona{
 		super(nombre);
 	}
 
-	public static int create(Cliente reg){
+	public static int create(Cliente cliente){
 		int result = 0;
-		try{
-			lista.add(reg);
-			result = 1;
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+
+		lista.add(cliente);
+		result = 1;
+
 		return result;
 	}
 	
@@ -41,42 +39,41 @@ public class Cliente extends Persona{
 	}
 	
 	public static Cliente read(int id){
-		Cliente reg = null;
-		for(Cliente x : read()){
-			if(x.getId() == id){
-				reg = x;
+		Cliente cliente = null;
+		
+		for(Cliente reg: read()){
+			if(reg.getId() == id){
+				cliente = reg;
 			}
 		}
-		return reg;
+		
+		return cliente;
 	}
 	
-	public static int update(Cliente reg){
+	public static int update(Cliente cliente){
 		int result = 0;
-		try{
-			for(Cliente x : read()){
-				if(x.getId() == reg.getId()){
-					lista.set(lista.indexOf(x), reg);
-				}
+	
+		for(Cliente reg: read()){
+			if(reg.getId() == cliente.getId()){
+				lista.set(lista.indexOf(reg), cliente);
+				result = 1;
 			}
-			result = 1;
-		}catch(Exception e){
-			e.printStackTrace();
 		}
+		
+		
 		return result;
 	}
 	
 	public static int delete(int id){
 		int result = 0;
-		try{
-			for(Cliente x : read()){
-				if(x.getId() == id){
-					read().remove(x);
-					result = 1;
-				}
+	
+		for(Cliente reg: read()){
+			if(reg.getId() == id){
+				read().remove(reg);
+				result = 1;
 			}
-		}catch(Exception e){
-			e.printStackTrace();
 		}
+		
 		return result;
 	}
 	

@@ -11,15 +11,8 @@ public class InicializationHelper {
 		Mesero.create(new Mesero("Josset"));
 		Mesero.create(new Mesero("Javier"));
 		
-		Mesa.create(new Mesa());
-		Mesa.create(new Mesa());
-		Mesa.create(new Mesa());
-		Mesa.create(new Mesa());
-		Mesa.create(new Mesa());
-		Mesa.create(new Mesa());
-		Mesa.create(new Mesa());
-		Mesa.create(new Mesa());
-		Mesa.create(new Mesa());
-		Mesa.create(new Mesa());
+		for(int i = 0; i<10;i++){
+			Mesa.create(new Mesa());
+		}
 	}
 }

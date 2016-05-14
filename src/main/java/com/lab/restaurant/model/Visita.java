@@ -71,20 +71,20 @@ public class Visita{
 		return visita;
 	}
 	
-	public static int create(Visita reg) {
+	public static int create(Visita visita) {
 		
-		lista.add(reg);
+		lista.add(visita);
 		
 		return 1;
 	}
 	
-	public static int update(Visita reg) {
+	public static int update(Visita visita) {
 		int result = 0;
 				
-		for(Visita x : lista){
+		for(Visita reg : lista){
 			
-			if(x.getId() == reg.getId()){
-				lista.set(lista.indexOf(x), reg);
+			if(reg.getId() == visita.getId()){
+				lista.set(lista.indexOf(reg), visita);
 				result = 1;
 			}
 			
@@ -93,12 +93,12 @@ public class Visita{
 		return result;
 	}
 	
-	public static int delete(Visita reg) {
+	public static int delete(Visita visita) {
 		int result = 0;
 		
-		for(Visita x : lista){
-			if(x.getId() == reg.getId()){
-				lista.remove(x);
+		for(Visita reg : lista){
+			if(reg.getId() == visita.getId()){
+				lista.remove(reg);
 				result = 1;
 			}
 		}

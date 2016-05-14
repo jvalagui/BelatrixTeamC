@@ -8,7 +8,7 @@ public class Mesero extends Persona{
 	
 	private static int identityId;
 	private static List<Mesero> lista;
-	public static final int limiteMesas = 5;
+	public static final int LIMITE_MESAS = 5;
 	private boolean disponible;
 	
 	public Mesero(){}
@@ -36,10 +36,10 @@ public class Mesero extends Persona{
 
 	
 
-	public static int create(Mesero reg){
+	public static int create(Mesero mesero){
 		int result = 0;
 		try{
-			lista.add(reg);
+			lista.add(mesero);
 			result = 1;
 		}catch(Exception e){
 			e.printStackTrace();
@@ -52,21 +52,21 @@ public class Mesero extends Persona{
 	}
 	
 	public static Mesero read(int id){
-		Mesero reg = null;
-		for(Mesero x : read()){
-			if(x.getId() == id){
-				reg = x;
+		Mesero mesero = null;
+		for(Mesero reg : lista){
+			if(reg.getId() == id){
+				mesero = reg;
 			}
 		}
-		return reg;
+		return mesero;
 	}
 	
-	public static int update(Mesero reg){
+	public static int update(Mesero mesero){
 		int result = 0;
 		try{
-			for(Mesero x : read()){
-				if(x.getId() == reg.getId()){
-					lista.set(lista.indexOf(x), reg);
+			for(Mesero reg : lista){
+				if(reg.getId() == mesero.getId()){
+					lista.set(lista.indexOf(reg), mesero);
 				}
 			}
 			result = 1;
@@ -79,9 +79,9 @@ public class Mesero extends Persona{
 	public static int delete(int id){
 		int result = 0;
 		try{
-			for(Mesero x : read()){
-				if(x.getId() == id){
-					read().remove(x);
+			for(Mesero reg : lista){
+				if(reg.getId() == id){
+					read().remove(reg);
 					result = 1;
 				}
 			}
@@ -94,13 +94,13 @@ public class Mesero extends Persona{
 	// Retorna uno de los meseros menos ocupados
 	 public static Mesero obtenerMesero(){
 		 List<Mesero> meseros = new ArrayList<Mesero>();
-		 meseros.add(Mesero.read(0));
-	 	 for(Mesero x : lista){
-		   int mesasM = Mesa.cantidadAtendidasPorMesero(meseros.get(0).getId());
-		   int mesasX = Mesa.cantidadAtendidasPorMesero(x.getId());
-		   if(mesasX < mesasM){
-			   meseros.set(0, x);
-		   }
+		 meseros.add(lista.get(0));
+	 	 for(Mesero reg : lista){
+			int mesasM = Mesa.cantidadAtendidasPorMesero(meseros.get(0).getId());
+			int mesasX = Mesa.cantidadAtendidasPorMesero(reg.getId());
+			if (mesasX < mesasM) {
+				meseros.set(0, reg);
+			}
 	 	 }
 	 	 return meseros.get(0);
 	 }

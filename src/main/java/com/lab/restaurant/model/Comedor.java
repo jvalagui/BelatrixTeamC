@@ -10,8 +10,8 @@ public class Comedor{
 	
 	public static boolean lleno(){
 		boolean lleno = true;
-		for(Mesa x : listaMesas){
-			if(x.isUsada()==false) lleno = false;
+		for(Mesa mesa : listaMesas){
+			if(mesa.isUsada()==false) lleno = false;
 		}
 		return lleno;
 	}
@@ -31,9 +31,9 @@ public class Comedor{
 		
 		List<Mesero> disponibles = new ArrayList<>();
 		
-		for(Mesero m : listaMeseros){
-			if(!m.isDisponible()){
-				disponibles.add(m);
+		for(Mesero mesero : listaMeseros){
+			if(!mesero.isDisponible()){
+				disponibles.add(mesero);
 			}
 		}
 		
@@ -47,7 +47,7 @@ public class Comedor{
 	}
 	
 	public static boolean asignarMesero(int idMesero, int idMesa){
-		if(Mesa.cantidadAtendidasPorMesero(idMesero) <= Mesero.limiteMesas){
+		if(Mesa.cantidadAtendidasPorMesero(idMesero) <= Mesero.LIMITE_MESAS){
 			Mesa mesa = Mesa.read(idMesa);
 			mesa.setIdMesero(idMesero);
 			return true;

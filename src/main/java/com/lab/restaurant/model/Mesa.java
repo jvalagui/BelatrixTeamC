@@ -48,10 +48,10 @@ public class Mesa {
 	}
 
 	
-	public static int create(Mesa reg){
+	public static int create(Mesa mesa){
 		int result = 0;
 		try{
-			lista.add(reg);
+			lista.add(mesa);
 			result = 1;
 		}catch(Exception e){
 			e.printStackTrace();
@@ -64,21 +64,21 @@ public class Mesa {
 	}
 	
 	public static Mesa read(int id){
-		Mesa reg = null;
-		for(Mesa x : read()){
-			if(x.getId() == id){
-				reg = x;
+		Mesa mesa = null;
+		for(Mesa reg : read()){
+			if(reg.getId() == id){
+				mesa = reg;
 			}
 		}
-		return reg;
+		return mesa;
 	}
 	
-	public static int update(Mesa reg){
+	public static int update(Mesa mesa){
 		int result = 0;
 		
-		for(Mesa x : read()){
-			if(x.getId() == reg.getId()){
-				lista.set(lista.indexOf(x), reg);
+		for(Mesa reg : read()){
+			if(reg.getId() == mesa.getId()){
+				lista.set(lista.indexOf(reg), mesa);
 				result = 1;
 			}
 		}
@@ -89,9 +89,9 @@ public class Mesa {
 	public static int delete(int id){
 		int result = 0;
 		
-		for(Mesa x : read()){
-			if(x.getId() == id){
-				read().remove(x);
+		for(Mesa reg : read()){
+			if(reg.getId() == id){
+				read().remove(reg);
 				result = 1;
 			}
 		}
@@ -101,8 +101,8 @@ public class Mesa {
 	
 	public static int cantidadAtendidasPorMesero(int idMesero){
 		int c = 0;
-		for(Mesa x : lista){
-			if(x.getIdMesero() == idMesero){ c++; }
+		for(Mesa reg : lista){
+			if(reg.getIdMesero() == idMesero){ c++; }
 		}
 		return c;
 	}

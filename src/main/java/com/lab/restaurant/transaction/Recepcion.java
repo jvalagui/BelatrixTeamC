@@ -18,16 +18,16 @@ public class Recepcion {
 	
 	
 	// Cliente nuevo
-	public void generarVisita(String nomCli){
-		cliente = new Cliente(nomCli);
+	public void generarVisita(String nomCliente){
+		cliente = new Cliente(nomCliente);
 		Cliente.create(cliente);
 		visita = new Visita(cliente.getId());
 		Visita.create(visita);
 	}
 	
 	// Cliente antiguo
-	public void generarVisita(int idCli){
-		visita = new Visita(idCli);
+	public void generarVisita(int idCliente){
+		visita = new Visita(idCliente);
 		Visita.create(visita);
 	}
 	
