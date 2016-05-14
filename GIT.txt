@@ -1,0 +1,10 @@
+git checkout -b <rama> (declarar) la rama (permite navegar entre ramas)
+git commit (guardar cambios)
+git merge <rama>(para integrar <rama> a la rama actual)
+git status (verificar si todo esta bien)
+git push origin master
+git pull origin master
+
+
+#Info
+www.cheat-sheets.org/saved-copy/git-cheat-sheet.pdf
