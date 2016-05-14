@@ -6,25 +6,15 @@ import java.util.List;
 
 public class Mesero extends Persona{
 	
-	private static int identityId;
-	private static List<Mesero> lista;
+	private static List<Mesero> lista = new ArrayList<Mesero>();
 	public static final int LIMITE_MESAS = 5;
 	private boolean disponible;
-	
-	public Mesero(){}
 
-	static{
-		identityId = 0;
-		lista = new ArrayList<>();
-	}
-	{
-		identityId++;
-		setId(identityId);
-		setDisponible(true);
-	}
+	public Mesero(){}
 	
-	public Mesero(String nombre) {
-		super(nombre);
+	public Mesero(int id, String nombre) {
+		super(id,nombre);
+		disponible = true;
 	}
 	
 	public boolean isDisponible() {
@@ -33,8 +23,6 @@ public class Mesero extends Persona{
 	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
 	}
-
-	
 
 	public static int create(Mesero mesero){
 		int result = 0;
@@ -81,7 +69,7 @@ public class Mesero extends Persona{
 		try{
 			for(Mesero reg : lista){
 				if(reg.getId() == id){
-					read().remove(reg);
+					lista.remove(reg);
 					result = 1;
 				}
 			}

@@ -1,22 +1,13 @@
 package main.java.com.lab.restaurant.model;
 
 class Persona {
-	private static int identityid;
+	
 	private int id;
 	private String nombre;
 	
-	static{
-		identityid = 0;
-	}
-	
-	{
-		identityid++;
-		id = identityid;
-	}
-	
 	public Persona(){};
 	
-	public Persona(String nombre) {
+	public Persona(int id, String nombre) {
 		this.nombre = nombre;
 	}
 	
@@ -32,5 +23,7 @@ class Persona {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+
 	
 }

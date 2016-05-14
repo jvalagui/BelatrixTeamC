@@ -1,26 +1,14 @@
 package main.java.com.lab.restaurant.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Visita{
-	private static int identityId;
 	private int id;
 	private int idCliente;
 	private int estado;
 	private int idMesa;
 
 	private static List<Visita> lista;
-	
-	static{
-		identityId = 0;
-		lista = new ArrayList<>();
-	}
-	
-	{
-		identityId++;
-		id = identityId;
-	}
 	
 	public Visita(){
 		
@@ -110,9 +98,5 @@ public class Visita{
 		return "Visita [id=" + id + ", idCliente=" + idCliente + ", estado=" + estado + ", idMesa=" + idMesa
 				+ "]";
 	}
-	
 
-	
-	
-	
 }

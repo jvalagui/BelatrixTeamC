@@ -18,8 +18,8 @@ public class Recepcion {
 	
 	
 	// Cliente nuevo
-	public void generarVisita(String nomCliente){
-		cliente = new Cliente(nomCliente);
+	public void generarVisita(int idCliente, String nombreCliente){
+		cliente = new Cliente(idCliente, nombreCliente);
 		Cliente.create(cliente);
 		visita = new Visita(cliente.getId());
 		Visita.create(visita);

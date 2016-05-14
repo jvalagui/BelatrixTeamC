@@ -4,28 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Mesa {
-	
-	private static int identityId;
-	
+		
 	private int id;
 	private int idMesero;
 	private boolean usada;
 	
-	private static List<Mesa> lista;
-	
-	static{
-		identityId = 0;
-		lista = new ArrayList<>();
-	}
+	private static List<Mesa> lista = new ArrayList<Mesa>();
 
 	{
-		identityId++;
-		id = identityId;
-		setUsada(false);
+		usada = false;
 	}
 	
-	public Mesa(){
-		
+	public Mesa(){}
+	
+	public Mesa(int id){
+		this.id = id;
 	}
 	
 	public int getId() {
@@ -65,7 +58,7 @@ public class Mesa {
 	
 	public static Mesa read(int id){
 		Mesa mesa = null;
-		for(Mesa reg : read()){
+		for(Mesa reg : lista){
 			if(reg.getId() == id){
 				mesa = reg;
 			}
@@ -76,7 +69,7 @@ public class Mesa {
 	public static int update(Mesa mesa){
 		int result = 0;
 		
-		for(Mesa reg : read()){
+		for(Mesa reg : lista){
 			if(reg.getId() == mesa.getId()){
 				lista.set(lista.indexOf(reg), mesa);
 				result = 1;
@@ -89,9 +82,9 @@ public class Mesa {
 	public static int delete(int id){
 		int result = 0;
 		
-		for(Mesa reg : read()){
+		for(Mesa reg : lista){
 			if(reg.getId() == id){
-				read().remove(reg);
+				lista.remove(reg);
 				result = 1;
 			}
 		}

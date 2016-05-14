@@ -11,7 +11,7 @@ public class Comedor{
 	public static boolean lleno(){
 		boolean lleno = true;
 		for(Mesa mesa : listaMesas){
-			if(mesa.isUsada()==false) lleno = false;
+			if(mesa.isUsada()==false){ lleno = false;}
 		}
 		return lleno;
 	}
