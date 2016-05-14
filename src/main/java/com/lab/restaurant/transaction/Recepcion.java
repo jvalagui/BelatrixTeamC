@@ -1,6 +1,8 @@
 package main.java.com.lab.restaurant.transaction;
 
 
+import java.util.List;
+
 import main.java.com.lab.restaurant.model.Cliente;
 import main.java.com.lab.restaurant.model.Comedor;
 import main.java.com.lab.restaurant.model.Mesa;
@@ -15,6 +17,7 @@ public class Recepcion {
 	private Queue salaDeEspera = new Queue();
 	private Cliente cliente = null;
 	private Visita visita = null;
+	private Comedor comedor = new Comedor();
 	
 	
 	// Cliente nuevo
@@ -31,13 +34,14 @@ public class Recepcion {
 		Visita.create(visita);
 	}
 	
-	public String asignarMesa(int idMesa){
+	public String asignarMesa(int idVisita){
 		String msg = "";
-		Mesa mesa = Mesa.read(idMesa);
-		if(!Comedor.lleno()){
+		Visita visita = Visita.read(idVisita);
+		Mesa mesa = comedor.obtenerMesaDisponible();
+		if(!comedor.lleno()){
 			if(mesa.isUsada() == false ){
-				Comedor.asignarMesa(idMesa, visita);
-				Comedor.asignarMesero(Mesero.obtenerMesero().getId(), idMesa);
+				comedor.asignarMesa(mesa.getId(), visita);
+				comedor.asignarMesero(Mesero.obtenerMeseroDesocupado().getId(), mesa.getId());
 				msg = "Mesa asignada";
 			}else{
 				msg = "La mesa se encuentra ocupada";
@@ -49,11 +53,24 @@ public class Recepcion {
 		return msg;
 	}
 	
-	public void asignarDeSala(int idMesa){
-		visita = salaDeEspera.peek();
-		Comedor.asignarMesa(idMesa, visita);
-		Comedor.asignarMesero(Mesero.obtenerMesero().getId(), idMesa);
-		salaDeEspera.remove();
+	public void asignarSalaAlDespedirVisita(int idMesa){
+		if(!salaDeEspera.isEmpty()){
+			visita = salaDeEspera.peek();
+			comedor.asignarMesa(idMesa, visita);
+			comedor.asignarMesero(Mesero.obtenerMeseroDesocupado().getId(), idMesa);
+			salaDeEspera.remove();
+		}
+	}
+	
+	public void despedirVisita(Visita visita){
+		comedor.despedirVisita(visita);
+		
+		asignarSalaAlDespedirVisita(visita.getIdMesa());
+	}
+	
+	
+	public List<Mesa> mesasDisponibles(){
+		return comedor.getMesasDisponibles();
 	}
 	
 	

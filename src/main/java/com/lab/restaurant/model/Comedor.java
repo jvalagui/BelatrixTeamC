@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Comedor{
 
-	private static List<Mesa> listaMesas = Mesa.read();
-	private static List<Mesero> listaMeseros = Mesero.read();
+	private List<Mesa> listaMesas = Mesa.read();
+	private List<Mesero> listaMeseros = Mesero.read();
 	
-	public static boolean lleno(){
+	public boolean lleno(){
 		boolean lleno = true;
 		for(Mesa mesa : listaMesas){
 			if(mesa.isUsada()==false){ lleno = false;}
@@ -16,7 +16,7 @@ public class Comedor{
 		return lleno;
 	}
 	
-	public static List<Mesa> getMesasDisponibles(){
+	public List<Mesa> getMesasDisponibles(){
 		List<Mesa> disponibles = new ArrayList<>();
 		for(Mesa m : listaMesas){
 			if(!m.isUsada()){
@@ -26,8 +26,12 @@ public class Comedor{
 		return disponibles;
 	}
 	
+	public Mesa obtenerMesaDisponible(){
+		return Mesa.read(((int)Math.random()*getMesasDisponibles().size()));
+	}
 	
-	public static List<Mesero> getMeserosDisponibles(){
+	
+	public List<Mesero> getMeserosDisponibles(){
 		
 		List<Mesero> disponibles = new ArrayList<>();
 		
@@ -40,13 +44,13 @@ public class Comedor{
 		return disponibles;
 	}
 	
-	public static void asignarMesa(int idMesa, Visita visita){
+	public void asignarMesa(int idMesa, Visita visita){
 		Mesa mesa = Mesa.read(idMesa);
 		mesa.setUsada(true);
 		visita.setIdMesa(idMesa);
 	}
 	
-	public static boolean asignarMesero(int idMesero, int idMesa){
+	public boolean asignarMesero(int idMesero, int idMesa){
 		if(Mesa.cantidadAtendidasPorMesero(idMesero) <= Mesero.LIMITE_MESAS){
 			Mesa mesa = Mesa.read(idMesa);
 			mesa.setIdMesero(idMesero);
@@ -58,7 +62,7 @@ public class Comedor{
 		
 	}
 			
-	public static void despedirVisita(Visita visita){
+	public void despedirVisita(Visita visita){
 		Mesa mesa = Mesa.read(visita.getIdMesa());
 		mesa.setIdMesero(-1);
 		mesa.setUsada(false);

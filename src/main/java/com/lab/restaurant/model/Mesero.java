@@ -80,7 +80,7 @@ public class Mesero extends Persona{
 	}
 	
 	// Retorna uno de los meseros menos ocupados
-	 public static Mesero obtenerMesero(){
+	 public static Mesero obtenerMeseroDesocupado(){
 		 List<Mesero> meseros = new ArrayList<Mesero>();
 		 meseros.add(lista.get(0));
 	 	 for(Mesero reg : lista){
