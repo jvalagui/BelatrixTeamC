@@ -1,4 +1,4 @@
-package main.test;
+/*package main.test;
 
 import static org.junit.Assert.assertTrue;
 
@@ -55,4 +55,4 @@ public class TestRecepcion {
 		Visita.update(visita);
 		Assert.assertEquals(2 , Visita.read(1).getIdCliente());
 	}
-}
+}*/

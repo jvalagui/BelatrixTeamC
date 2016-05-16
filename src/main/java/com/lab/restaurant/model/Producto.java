@@ -3,7 +3,7 @@ package main.java.com.lab.restaurant.model;
 /**
  * Created by daniel on 5/14/16.
  */
-public class Meal {
+public class Producto {
     private int id;
     private String nombre;
     private double precio;
@@ -11,7 +11,7 @@ public class Meal {
     private int tipo;
 
 
-    public Meal(int id, String nombre, double precio, double costo, int tipo){
+    public Producto(int id, String nombre, double precio, double costo, int tipo){
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;

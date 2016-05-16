@@ -7,8 +7,9 @@ public class Restaurante {
 
 	
 	public static void main(String[] args){
+		Inicializador inicializador = new Inicializador();
 		
-		Inicializador.inicializar();
+		inicializador.inicializar();
 		
 		Recepcion recepcion = new Recepcion();
 		

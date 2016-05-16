@@ -9,10 +9,14 @@ import main.java.com.lab.restaurant.model.Mesa;
 import main.java.com.lab.restaurant.model.Mesero;
 import main.java.com.lab.restaurant.model.Queue;
 import main.java.com.lab.restaurant.model.Visita;
+import main.java.com.lab.restaurant.transaction.services.ClienteService;
+import main.java.com.lab.restaurant.transaction.services.VisitaService;
 
 
 
 public class Recepcion {
+	ClienteService clienteService = new ClienteService();
+	VisitaService visitaService = new VisitaService();
 	
 	private Queue salaDeEspera = new Queue();
 	private Cliente cliente = null;
@@ -23,20 +27,20 @@ public class Recepcion {
 	// Cliente nuevo
 	public void generarVisita(int idCliente, String nombreCliente){
 		cliente = new Cliente(idCliente, nombreCliente);
-		Cliente.create(cliente);
+		clienteService.create(cliente);
 		visita = new Visita(idCliente,cliente.getId());
-		Visita.create(visita);
+		visitaService.create(visita);
 	}
 	
 	// Cliente antiguo
 	public void generarVisita(int idCliente){
 		visita = new Visita(idCliente,idCliente);
-		Visita.create(visita);
+		visitaService.create(visita);
 	}
 	
 	public String asignarMesa(int idVisita){
 		String msg = "";
-		Visita visita = Visita.read(idVisita);
+		Visita visita = visitaService.read(idVisita);
 		Mesa mesa = comedor.obtenerMesaDisponible();
 		
 		if(!comedor.lleno()){

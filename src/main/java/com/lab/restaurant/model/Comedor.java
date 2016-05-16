@@ -3,10 +3,15 @@ package main.java.com.lab.restaurant.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Comedor{
+import main.java.com.lab.restaurant.transaction.services.MesaService;
+import main.java.com.lab.restaurant.transaction.services.MeseroService;
 
-	private List<Mesa> listaMesas = Mesa.read();
-	private List<Mesero> listaMeseros = Mesero.read();
+public class Comedor{
+	MesaService mesaservice = new MesaService();
+	MeseroService meseroservice = new MeseroService();
+
+	private List<Mesa> listaMesas = mesaservice.read();
+	private List<Mesero> listaMeseros = meseroservice.read();
 	
 	public boolean lleno(){
 		boolean lleno = true;
@@ -39,14 +44,14 @@ public class Comedor{
 	}
 	
 	public void asignarMesa(int idMesa, Visita visita){
-		Mesa mesa = Mesa.read(idMesa);
+		Mesa mesa = mesaservice.read(idMesa);
 		mesa.setUsada(true);
 		visita.setIdMesa(idMesa);
 	}
 	
 	public boolean asignarMesero(int idMesero, int idMesa){
 		if(Mesa.cantidadAtendidasPorMesero(idMesero) <= Mesero.LIMITE_MESAS){
-			Mesa mesa = Mesa.read(idMesa);
+			Mesa mesa = mesaservice.read(idMesa);
 			mesa.setIdMesero(idMesero);
 			return true;
 		}else{
@@ -57,7 +62,7 @@ public class Comedor{
 	}
 			
 	public void despedirVisita(Visita visita){
-		Mesa mesa = Mesa.read(visita.getIdMesa());
+		Mesa mesa = mesaservice.read(visita.getIdMesa());
 		mesa.setIdMesero(-1);
 		mesa.setUsada(false);
 	}
