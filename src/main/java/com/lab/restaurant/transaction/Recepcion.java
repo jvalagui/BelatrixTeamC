@@ -4,13 +4,12 @@ package main.java.com.lab.restaurant.transaction;
 import java.util.List;
 
 import main.java.com.lab.restaurant.model.Cliente;
-import main.java.com.lab.restaurant.model.Comedor;
 import main.java.com.lab.restaurant.model.Mesa;
 import main.java.com.lab.restaurant.model.Mesero;
-import main.java.com.lab.restaurant.model.Queue;
 import main.java.com.lab.restaurant.model.Visita;
 import main.java.com.lab.restaurant.transaction.services.ClienteService;
 import main.java.com.lab.restaurant.transaction.services.VisitaService;
+import main.java.com.lab.restaurant.utils.Queue;
 
 
 

@@ -1,8 +1,11 @@
-package main.java.com.lab.restaurant.model;
+package main.java.com.lab.restaurant.transaction;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import main.java.com.lab.restaurant.model.Mesa;
+import main.java.com.lab.restaurant.model.Mesero;
+import main.java.com.lab.restaurant.model.Visita;
 import main.java.com.lab.restaurant.transaction.services.MesaService;
 import main.java.com.lab.restaurant.transaction.services.MeseroService;
 

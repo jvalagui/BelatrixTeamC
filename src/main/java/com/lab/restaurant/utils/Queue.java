@@ -1,7 +1,9 @@
-package main.java.com.lab.restaurant.model;
+package main.java.com.lab.restaurant.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import main.java.com.lab.restaurant.model.Visita;
 
 
 public class Queue {
