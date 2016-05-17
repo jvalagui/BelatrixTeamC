@@ -1,8 +1,5 @@
 package main.java.com.lab.restaurant.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Mesa {
 		
 	private int id;
@@ -13,8 +10,14 @@ public class Mesa {
 		usada = false;
 	}
 	
-	public Mesa(){}
 	
+	
+	public Mesa(int id, int idMesero, boolean usada) {
+		this.id = id;
+		this.idMesero = idMesero;
+		this.usada = usada;
+	}
+
 	public Mesa(int id){
 		this.id = id;
 	}

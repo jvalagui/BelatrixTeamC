@@ -10,13 +10,21 @@ public class Visita{
 		
 	}
 	
-	public Visita(int id,int idCliente){
+	
+	public Visita(int id, int idCliente, int estado, int idMesa) {
 		this.id = id;
 		this.idCliente = idCliente;
+		this.estado = estado;
+		this.idMesa = idMesa;
 	}
-	
+
+
 	public int getId() {
 		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 	public int getIdCliente() {
 		return idCliente;

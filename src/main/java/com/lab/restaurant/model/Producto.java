@@ -6,24 +6,46 @@ package main.java.com.lab.restaurant.model;
 public class Producto {
     private int id;
     private String nombre;
-    private double precio;
+    private int tipo;
+    private int categoria;
     private double costo;
-    private CategoriaProducto categoria;
-    private TipoProducto tipo;
-    
-    
-    
-    
-	public Producto(int id, String nombre, double precio, double costo,
-			CategoriaProducto categoria, TipoProducto tipo) {
+    private double precio;
+    private int stock;
+
+	public Producto(int id, String nombre, int tipo, int categoria, double costo, double precio, int stock) {
 		this.id = id;
 		this.nombre = nombre;
-		this.precio = precio;
-		this.costo = costo;
-		this.categoria = categoria;
 		this.tipo = tipo;
+		this.categoria = categoria;
+		this.costo = costo;
+		this.precio = precio;
+		this.stock = stock;
 	}
 	
+	public int getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
+	}
+
+	public int getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(int categoria) {
+		this.categoria = categoria;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -35,12 +57,6 @@ public class Producto {
 	}
 	public double getCosto() {
 		return costo;
-	}
-	public CategoriaProducto getCategoria() {
-		return categoria;
-	}
-	public TipoProducto getTipo() {
-		return tipo;
 	}
 	public void setId(int id) {
 		this.id = id;
@@ -54,12 +70,5 @@ public class Producto {
 	public void setCosto(double costo) {
 		this.costo = costo;
 	}
-	public void setCategoria(CategoriaProducto categoria) {
-		this.categoria = categoria;
-	}
-	public void setTipo(TipoProducto tipo) {
-		this.tipo = tipo;
-	}
     
-
 }

@@ -21,13 +21,13 @@ public class VisitaService implements DaoManager<Visita> {
 	}
 
 	@Override
-	public void create(Visita t) {
-		visitaDao.create(t);
+	public void create(Visita visita) {
+		visitaDao.create(visita);
 	}
 
 	@Override
-	public void update(Visita t) {
-		visitaDao.update(t);
+	public void update(Visita visita) {
+		visitaDao.update(visita);
 	}
 
 	@Override

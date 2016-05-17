@@ -7,7 +7,7 @@ import main.java.com.lab.restaurant.constantes.DB_Properties;
 
 public class MySqlDBConexion {
 
-	public static Connection getConexion(String bd) {
+	public static Connection getConexion() {
 		Connection con = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");

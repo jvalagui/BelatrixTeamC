@@ -5,11 +5,9 @@ import java.util.List;
 
 import main.java.com.lab.restaurant.model.Mesero;
 import main.java.com.lab.restaurant.transaction.dao.DaoManager;
-import main.java.com.lab.restaurant.transaction.services.MesaService;
 
 public class LocalMeseroDao implements DaoManager<Mesero>{
 	private static List<Mesero> lista = new ArrayList<Mesero>();
-	private MesaService mesaService = new MesaService();
 	
 	@Override
 	public List<Mesero> read(){
