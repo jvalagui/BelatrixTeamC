@@ -5,8 +5,7 @@ import java.util.List;
 
 public class Mesero extends Persona {
 
-	private static List<Mesero> lista = new ArrayList<Mesero>();
-	public static final int LIMITE_MESAS = 5;
+	public static final int LIMITE_MESAS = 3;
 	private boolean disponible;
 
 	public Mesero() {

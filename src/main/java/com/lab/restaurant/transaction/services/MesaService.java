@@ -56,6 +56,6 @@ public class MesaService implements DaoManager<Mesa>{
 	}
 	
 	public Mesa obtenerMesaDisponible(){
-		return read().get(((int)Math.random()*getMesasDisponibles().size()));
+		return getMesasDisponibles().isEmpty() ? null : getMesasDisponibles().get(((int)Math.random()*getMesasDisponibles().size()));
 	}
 }

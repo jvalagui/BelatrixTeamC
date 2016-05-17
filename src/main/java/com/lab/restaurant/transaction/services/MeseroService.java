@@ -42,15 +42,17 @@ public class MeseroService implements DaoManager<Mesero> {
 
 	// Retorna uno de los meseros menos ocupados
 	public Mesero obtenerMeseroDesocupado() {
-		List<Mesero> meseros = new ArrayList<Mesero>();
-		meseros.add(read().get(0));
-		for (Mesero reg : read()) {
-			int mesasM = mesaService.cantidadAtendidasPorMesero(meseros.get(0).getId());
-			int mesasX = mesaService.cantidadAtendidasPorMesero(reg.getId());
-			if (mesasX < mesasM) {
-				meseros.set(0, reg);
-			}
-		}
-		return meseros.get(0);
+		
+		List<Integer> listaIdsMeseros = new ArrayList<Integer>();
+		
+		read().forEach(mesero -> listaIdsMeseros.add(mesero.getId()));
+		
+		int idMeseroConMenosMesas = listaIdsMeseros.stream()
+				.min((id1, id2) -> {
+					return mesaService.cantidadAtendidasPorMesero(id1)-mesaService.cantidadAtendidasPorMesero(id2);
+				})
+				.get();
+		
+		return read(idMeseroConMenosMesas);
 	}
 }

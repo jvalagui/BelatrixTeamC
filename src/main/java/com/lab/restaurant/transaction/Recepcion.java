@@ -5,7 +5,6 @@ import java.util.List;
 
 import main.java.com.lab.restaurant.model.Cliente;
 import main.java.com.lab.restaurant.model.Mesa;
-import main.java.com.lab.restaurant.model.Mesero;
 import main.java.com.lab.restaurant.model.Visita;
 import main.java.com.lab.restaurant.transaction.services.ClienteService;
 import main.java.com.lab.restaurant.transaction.services.MeseroService;
@@ -42,11 +41,11 @@ public class Recepcion {
 	public String asignarMesa(int idVisita){
 		String msg = "";
 		Visita visita = visitaService.read(idVisita);
-		Mesa mesa = comedor.obtenerMesaDisponible();
 		
 		if(!comedor.lleno()){
-			if(mesa.isUsada() == false ){
-				comedor.asignarMesa(mesa.getId(), visita);
+			Mesa mesa = comedor.asignarMesa(visita);
+			if(mesa!=null){
+				System.out.println(meseroService.obtenerMeseroDesocupado());
 				comedor.asignarMesero(meseroService.obtenerMeseroDesocupado().getId(), mesa.getId());
 				msg = "Mesa asignada";
 			}else{
@@ -60,19 +59,20 @@ public class Recepcion {
 		return msg;
 	}
 	
-	public void asignarSalaAlDespedirVisita(int idMesa){
+	public void asignarMesaAlDespedirVisita(){
 		if(!salaDeEspera.isEmpty()){
+			
 			visita = salaDeEspera.peek();
-			comedor.asignarMesa(idMesa, visita);
-			comedor.asignarMesero(meseroService.obtenerMeseroDesocupado().getId(), idMesa);
+			Mesa mesa = comedor.asignarMesa(visita);
+			
+			comedor.asignarMesero(meseroService.obtenerMeseroDesocupado().getId(), mesa.getId());
 			salaDeEspera.remove();
 		}
 	}
 	
 	public void despedirVisita(Visita visita){
 		comedor.despedirVisita(visita);
-		
-		asignarSalaAlDespedirVisita(visita.getIdMesa());
+		asignarMesaAlDespedirVisita();
 	}
 	
 	

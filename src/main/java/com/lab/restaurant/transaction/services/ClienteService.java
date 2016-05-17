@@ -22,14 +22,14 @@ public class ClienteService implements DaoManager<Cliente> {
 	}
 
 	@Override
-	public void create(Cliente t) {
-		clienteDao.create(t);
+	public void create(Cliente cliente) {
+		clienteDao.create(cliente);
 		
 	}
 
 	@Override
-	public void update(Cliente t) {
-		clienteDao.update(t);
+	public void update(Cliente cliente) {
+		clienteDao.update(cliente);
 		
 	}
 

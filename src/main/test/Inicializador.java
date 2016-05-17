@@ -12,12 +12,12 @@ public class Inicializador {
 	public void inicializar(){
 
 		meseroService.create(new Mesero(1,"John"));
-		meseroService.create(new Mesero(2,"Brian"));
+		meseroService.create(new Mesero(2,"Brian"));/*
 		meseroService.create(new Mesero(3,"Daniel"));
 		meseroService.create(new Mesero(4,"Josset"));
-		meseroService.create(new Mesero(5,"Javier"));
+		meseroService.create(new Mesero(5,"Javier"));*/
 		
-		for(int i = 0; i<10;i++){
+		for(int i = 0; i<7;i++){
 			mesaService.create(new Mesa(i+1));
 		}
 	}

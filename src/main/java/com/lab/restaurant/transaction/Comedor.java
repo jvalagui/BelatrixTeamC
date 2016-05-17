@@ -46,10 +46,19 @@ public class Comedor{
 		return disponibles;
 	}
 	
-	public void asignarMesa(int idMesa, Visita visita){
+	public Mesa asignarMesa(Visita visita){
+		
+		if(mesaService.obtenerMesaDisponible()==null){
+			return null;
+		}
+		
+		int idMesa = mesaService.obtenerMesaDisponible().getId();
+		
 		Mesa mesa = mesaService.read(idMesa);
 		mesa.setUsada(true);
 		visita.setIdMesa(idMesa);
+		
+		return mesa;
 	}
 	
 	public boolean asignarMesero(int idMesero, int idMesa){
