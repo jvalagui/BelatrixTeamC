@@ -8,46 +8,58 @@ public class Producto {
     private String nombre;
     private double precio;
     private double costo;
-    private int tipo;
+    private CategoriaProducto categoria;
+    private TipoProducto tipo;
+    
+    
+    
+    
+	public Producto(int id, String nombre, double precio, double costo,
+			CategoriaProducto categoria, TipoProducto tipo) {
+		this.id = id;
+		this.nombre = nombre;
+		this.precio = precio;
+		this.costo = costo;
+		this.categoria = categoria;
+		this.tipo = tipo;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public double getPrecio() {
+		return precio;
+	}
+	public double getCosto() {
+		return costo;
+	}
+	public CategoriaProducto getCategoria() {
+		return categoria;
+	}
+	public TipoProducto getTipo() {
+		return tipo;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+	public void setCosto(double costo) {
+		this.costo = costo;
+	}
+	public void setCategoria(CategoriaProducto categoria) {
+		this.categoria = categoria;
+	}
+	public void setTipo(TipoProducto tipo) {
+		this.tipo = tipo;
+	}
+    
 
-
-    public Producto(int id, String nombre, double precio, double costo, int tipo){
-        this.id = id;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.costo = costo;
-        this.tipo = tipo;
-    }
-
-    public double getPrecio(){
-        return precio;
-    }
-    public void setPrecio(double precio){
-        this.precio = precio;
-    }
-    public int getId(){
-        return id;
-    }
-    public void setId(int id){
-        this.id = id;
-    }
-    public String getNombre()
-    {
-        return nombre;
-    }
-    public void setNombre(String nombre){
-        this.nombre = nombre;
-    }
-    public int getTipo(){
-        return tipo;
-    }
-    public void setTipo(int tipo){
-        this.tipo = tipo;
-    }
-    public double getCosto(){
-        return costo;
-    }
-    public void setCosto(double costo){
-        this.costo = costo;
-    }
 }

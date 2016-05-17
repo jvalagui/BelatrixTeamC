@@ -7,6 +7,8 @@ import main.java.com.lab.restaurant.model.Mesa;
 import main.java.com.lab.restaurant.model.Mesero;
 import main.java.com.lab.restaurant.model.Visita;
 import main.java.com.lab.restaurant.model.Visita_Producto;
+import main.java.com.lab.restaurant.transaction.daoimpl.LocalCategoriaProductoDao;
+import main.java.com.lab.restaurant.transaction.daoimpl.LocalTipoProductoDao;
 
 public class MySqlDaoFactory extends DaoFactory{
 
@@ -48,6 +50,18 @@ public class MySqlDaoFactory extends DaoFactory{
 
 	@Override
 	public DaoManager<Visita_Producto> getVisita_ProductoDao() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public LocalCategoriaProductoDao getCategoriaProductoDao() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public LocalTipoProductoDao getTipoProductoDao() {
 		// TODO Auto-generated method stub
 		return null;
 	}

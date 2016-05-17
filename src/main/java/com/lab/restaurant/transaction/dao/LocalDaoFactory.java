@@ -7,11 +7,13 @@ import main.java.com.lab.restaurant.model.Mesero;
 import main.java.com.lab.restaurant.model.Producto;
 import main.java.com.lab.restaurant.model.Visita;
 import main.java.com.lab.restaurant.model.Visita_Producto;
+import main.java.com.lab.restaurant.transaction.daoimpl.LocalCategoriaProductoDao;
 import main.java.com.lab.restaurant.transaction.daoimpl.LocalClienteDao;
 import main.java.com.lab.restaurant.transaction.daoimpl.LocalComprobantePagoDao;
 import main.java.com.lab.restaurant.transaction.daoimpl.LocalMesaDao;
 import main.java.com.lab.restaurant.transaction.daoimpl.LocalMeseroDao;
 import main.java.com.lab.restaurant.transaction.daoimpl.LocalProductoDao;
+import main.java.com.lab.restaurant.transaction.daoimpl.LocalTipoProductoDao;
 import main.java.com.lab.restaurant.transaction.daoimpl.LocalVisitaDao;
 import main.java.com.lab.restaurant.transaction.daoimpl.LocalVisita_ProductoDao;
 
@@ -46,6 +48,16 @@ public class LocalDaoFactory extends DaoFactory {
 	@Override
 	public DaoManager<Visita_Producto> getVisita_ProductoDao() {
 		return new LocalVisita_ProductoDao();
+	}
+
+	@Override
+	public LocalCategoriaProductoDao getCategoriaProductoDao() {
+		return new LocalCategoriaProductoDao();
+	}
+
+	@Override
+	public LocalTipoProductoDao getTipoProductoDao() {
+		return new LocalTipoProductoDao();
 	}
 	
 	
