@@ -8,6 +8,7 @@ import main.java.com.lab.restaurant.model.Mesa;
 import main.java.com.lab.restaurant.model.Mesero;
 import main.java.com.lab.restaurant.model.Visita;
 import main.java.com.lab.restaurant.transaction.services.ClienteService;
+import main.java.com.lab.restaurant.transaction.services.MeseroService;
 import main.java.com.lab.restaurant.transaction.services.VisitaService;
 import main.java.com.lab.restaurant.utils.Queue;
 
@@ -15,6 +16,7 @@ import main.java.com.lab.restaurant.utils.Queue;
 
 public class Recepcion {
 	ClienteService clienteService = new ClienteService();
+	MeseroService meseroService = new MeseroService();
 	VisitaService visitaService = new VisitaService();
 	
 	private Queue salaDeEspera = new Queue();
@@ -45,7 +47,7 @@ public class Recepcion {
 		if(!comedor.lleno()){
 			if(mesa.isUsada() == false ){
 				comedor.asignarMesa(mesa.getId(), visita);
-				comedor.asignarMesero(Mesero.obtenerMeseroDesocupado().getId(), mesa.getId());
+				comedor.asignarMesero(meseroService.obtenerMeseroDesocupado().getId(), mesa.getId());
 				msg = "Mesa asignada";
 			}else{
 				msg = "La mesa se encuentra ocupada";
@@ -62,7 +64,7 @@ public class Recepcion {
 		if(!salaDeEspera.isEmpty()){
 			visita = salaDeEspera.peek();
 			comedor.asignarMesa(idMesa, visita);
-			comedor.asignarMesero(Mesero.obtenerMeseroDesocupado().getId(), idMesa);
+			comedor.asignarMesero(meseroService.obtenerMeseroDesocupado().getId(), idMesa);
 			salaDeEspera.remove();
 		}
 	}

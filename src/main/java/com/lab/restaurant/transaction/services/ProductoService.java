@@ -8,34 +8,31 @@ import main.java.com.lab.restaurant.transaction.dao.DaoManager;
 
 public class ProductoService implements DaoManager<Producto> {
 	DaoFactory daoFactory = DaoFactory.getDaoFactory(DaoFactory.LOCAL);
-	DaoManager<Producto> mealDao = daoFactory.getMealDao();
+	DaoManager<Producto> productoDao = daoFactory.getMealDao();
 
 	@Override
 	public List<Producto> read() {
-		return mealDao.read();
+		return productoDao.read();
 	}
 
 	@Override
 	public Producto read(int id) {
-		return mealDao.read(id);
+		return productoDao.read(id);
 	}
 
 	@Override
-	public void create(Producto t) {
-		// TODO Auto-generated method stub
-		
+	public void create(Producto producto) {
+		productoDao.create(producto);
 	}
 
 	@Override
-	public void update(Producto t) {
-		// TODO Auto-generated method stub
-		
+	public void update(Producto producto) {
+		productoDao.update(producto);
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+		productoDao.delete(id);
 	}
 
 }

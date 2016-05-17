@@ -10,10 +10,10 @@ import main.java.com.lab.restaurant.transaction.services.MesaService;
 import main.java.com.lab.restaurant.transaction.services.MeseroService;
 
 public class Comedor{
-	MesaService mesaservice = new MesaService();
+	MesaService mesaService = new MesaService();
 	MeseroService meseroservice = new MeseroService();
 
-	private List<Mesa> listaMesas = mesaservice.read();
+	private List<Mesa> listaMesas = mesaService.read();
 	private List<Mesero> listaMeseros = meseroservice.read();
 	
 	public boolean lleno(){
@@ -25,11 +25,11 @@ public class Comedor{
 	}
 	
 	public List<Mesa> getMesasDisponibles(){
-		return Mesa.getMesasDisponibles();
+		return mesaService.getMesasDisponibles();
 	}
 	
 	public Mesa obtenerMesaDisponible(){
-		return Mesa.obtenerMesaDisponible();
+		return mesaService.obtenerMesaDisponible();
 	}
 	
 	
@@ -47,14 +47,14 @@ public class Comedor{
 	}
 	
 	public void asignarMesa(int idMesa, Visita visita){
-		Mesa mesa = mesaservice.read(idMesa);
+		Mesa mesa = mesaService.read(idMesa);
 		mesa.setUsada(true);
 		visita.setIdMesa(idMesa);
 	}
 	
 	public boolean asignarMesero(int idMesero, int idMesa){
-		if(Mesa.cantidadAtendidasPorMesero(idMesero) <= Mesero.LIMITE_MESAS){
-			Mesa mesa = mesaservice.read(idMesa);
+		if(mesaService.cantidadAtendidasPorMesero(idMesero) <= Mesero.LIMITE_MESAS){
+			Mesa mesa = mesaService.read(idMesa);
 			mesa.setIdMesero(idMesero);
 			return true;
 		}else{
@@ -65,7 +65,7 @@ public class Comedor{
 	}
 			
 	public void despedirVisita(Visita visita){
-		Mesa mesa = mesaservice.read(visita.getIdMesa());
+		Mesa mesa = mesaService.read(visita.getIdMesa());
 		mesa.setIdMesero(-1);
 		mesa.setUsada(false);
 	}

@@ -22,20 +22,17 @@ public class VisitaService implements DaoManager<Visita> {
 
 	@Override
 	public void create(Visita t) {
-		// TODO Auto-generated method stub
-		
+		visitaDao.create(t);
 	}
 
 	@Override
 	public void update(Visita t) {
-		// TODO Auto-generated method stub
-		
+		visitaDao.update(t);
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+		visitaDao.delete(id);
 	}
 
 }

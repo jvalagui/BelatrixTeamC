@@ -1,5 +1,6 @@
 package main.java.com.lab.restaurant.transaction.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import main.java.com.lab.restaurant.model.Mesa;
@@ -22,21 +23,39 @@ public class MesaService implements DaoManager<Mesa>{
 	}
 
 	@Override
-	public void create(Mesa t) {
-		// TODO Auto-generated method stub
-		
+	public void create(Mesa mesa) {
+		mesaDao.create(mesa);
 	}
 
 	@Override
-	public void update(Mesa t) {
-		// TODO Auto-generated method stub
-		
+	public void update(Mesa mesa) {
+		mesaDao.update(mesa);
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+		mesaDao.delete(id);
 	}
 
+	public int cantidadAtendidasPorMesero(int idMesero){
+		int c = 0;
+		for(Mesa reg : read()){
+			if(reg.getIdMesero() == idMesero){ c++; }
+		}
+		return c;
+	}
+	
+	public List<Mesa> getMesasDisponibles(){
+		List<Mesa> disponibles = new ArrayList<>();
+		for(Mesa m : read()){
+			if(!m.isUsada()){
+				disponibles.add(m);
+			}	
+		}
+		return disponibles;
+	}
+	
+	public Mesa obtenerMesaDisponible(){
+		return read().get(((int)Math.random()*getMesasDisponibles().size()));
+	}
 }
