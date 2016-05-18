@@ -7,7 +7,7 @@ import main.java.com.lab.restaurant.model.Cliente;
 import main.java.com.lab.restaurant.transaction.dao.DaoManager;
 
 public class LocalClienteDao implements DaoManager<Cliente>{
-	private  List<Cliente> lista = new ArrayList<Cliente>();
+	private static List<Cliente> lista = new ArrayList<Cliente>();
 
 	@Override
 	public void create(Cliente cliente){

@@ -40,4 +40,16 @@ public class Queue {
 		return queueArray.isEmpty();
 	}
 
+	@Override
+	public String toString(){
+		StringBuffer stringBuffer= new StringBuffer();
+		
+		stringBuffer.append("SALA DE ESPERA: \n");
+		
+		for(Visita itemVisita : queueArray){
+			stringBuffer.append(itemVisita+"\n");
+		}
+		
+		return stringBuffer.toString();
+	}
 }

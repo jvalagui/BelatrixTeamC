@@ -11,7 +11,12 @@ public class Cliente extends Persona{
 
 	@Override
 	public String toString() {
-		return "Cliente [getId()=" + getId() + ", getNombre()=" + getNombre()
+		return "Cliente [getId()=" + getId() + ", getDni()=" + getDni() + ", getNombre()=" + getNombre()
+				+ ", getApellidoPaterno()=" + getApellidoPaterno() + ", getApellidoMaterno()=" + getApellidoMaterno()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
 				+ "]";
 	}
+
+	
+	
 }

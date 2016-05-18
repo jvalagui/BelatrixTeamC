@@ -47,5 +47,4 @@ public class LocalDaoFactory extends DaoFactory {
 	public DaoManager<Venta_Detalle> getVenta_DetalleDao() {
 		return new LocalVenta_DetalleDao();
 	}
-	
 }

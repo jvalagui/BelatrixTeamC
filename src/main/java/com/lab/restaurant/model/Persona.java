@@ -7,7 +7,6 @@ class Persona {
 	private String nombre;
 	private String apellidoPaterno;
 	private String apellidoMaterno;
-		
 	
 	public Persona(){}
 	
@@ -18,18 +17,13 @@ class Persona {
 		this.apellidoPaterno = apellidoPaterno;
 		this.apellidoMaterno = apellidoMaterno;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	public String getDni() {
@@ -38,6 +32,14 @@ class Persona {
 
 	public void setDni(String dni) {
 		this.dni = dni;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getApellidoPaterno() {
@@ -55,7 +57,4 @@ class Persona {
 	public void setApellidoMaterno(String apellidoMaterno) {
 		this.apellidoMaterno = apellidoMaterno;
 	}
-	
-
-	
 }

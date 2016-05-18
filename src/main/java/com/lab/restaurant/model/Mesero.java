@@ -2,7 +2,7 @@ package main.java.com.lab.restaurant.model;
 
 public class Mesero extends Persona {
 
-	public static final int LIMITE_MESAS = 5;
+	public static final int LIMITE_MESAS = 3;
 	private boolean disponible;
 
 	public Mesero() {

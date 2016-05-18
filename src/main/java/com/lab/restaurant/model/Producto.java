@@ -13,6 +13,7 @@ public class Producto {
     private int stock;
 
 	public Producto(int id, String nombre, int tipo, int categoria, double costo, double precio, int stock) {
+
 		this.id = id;
 		this.nombre = nombre;
 		this.tipo = tipo;
@@ -70,5 +71,4 @@ public class Producto {
 	public void setCosto(double costo) {
 		this.costo = costo;
 	}
-    
 }
