@@ -54,11 +54,11 @@ public class MySQLMesaDao implements DaoManager<Mesa> {
 	@Override
 	public void create(Mesa mesa) {
 		Connection cn = MySqlDBConexion.getConexion();
-		String sql = "{call USP_MESA_CREATE(?,?,?)}";
+		String sql = "{call USP_MESA_CREATE(?,?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, mesa.getId());
-			statement.setBoolean(3, mesa.isUsada());
+			statement.setBoolean(2, mesa.isUsada());
 			statement.executeUpdate();
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -69,11 +69,11 @@ public class MySQLMesaDao implements DaoManager<Mesa> {
 	@Override
 	public void update(Mesa mesa) {
 		Connection cn = MySqlDBConexion.getConexion();
-		String sql = "{call USP_MESA_UPDATE(?,?,?)}";
+		String sql = "{call USP_MESA_UPDATE(?,?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
-			statement.setBoolean(3, mesa.isUsada());
 			statement.setInt(1, mesa.getId());
+			statement.setBoolean(2, mesa.isUsada());
 			statement.executeUpdate();
 		}catch(Exception ex){
 			ex.printStackTrace();

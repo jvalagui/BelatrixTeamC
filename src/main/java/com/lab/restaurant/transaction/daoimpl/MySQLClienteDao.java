@@ -77,11 +77,11 @@ public class MySQLClienteDao implements DaoManager<Cliente>{
 		String sql = "{call USP_CLIENTE_UPDATE(?,?,?,?,?)}";
 		try{
 			PreparedStatement statement = cn.prepareStatement(sql);
+			statement.setInt(1, cliente.getId());
 			statement.setString(2, cliente.getDni());
 			statement.setString(3, cliente.getNombre());
 			statement.setString(4, cliente.getApellidoPaterno());
 			statement.setString(5, cliente.getApellidoMaterno());
-			statement.setInt(1, cliente.getId());
 			statement.executeUpdate();
 		}catch(Exception ex){
 			ex.printStackTrace();

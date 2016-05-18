@@ -55,7 +55,7 @@ public class MySQLVisitaDao implements DaoManager<Visita>{
 	@Override
 	public void create(Visita visita) {
 		Connection cn = MySqlDBConexion.getConexion();
-		String sql = "{call USP_VISITA_CREATE(?,?,?,?)}";
+		String sql = "{call USP_VISITA_CREATE(?,?,?,?,?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, visita.getId());
@@ -73,14 +73,14 @@ public class MySQLVisitaDao implements DaoManager<Visita>{
 	@Override
 	public void update(Visita visita) {
 		Connection cn = MySqlDBConexion.getConexion();
-		String sql = "{call USP_VISITA_UPDATE(?,?,?,?)}";
+		String sql = "{call USP_VISITA_UPDATE(?,?,?,?,?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
-			statement.setInt(1, visita.getIdCliente());
-			statement.setInt(2, visita.getIdMesero());
-			statement.setInt(3, visita.getIdMesa());
+			statement.setInt(1, visita.getId());
+			statement.setInt(2, visita.getIdCliente());
+			statement.setInt(3, visita.getIdMesero());
+			statement.setInt(4, visita.getIdMesa());
 			statement.setInt(4, visita.getEstado());
-			statement.setInt(5, visita.getId());
 			statement.executeUpdate();
 		}catch(Exception ex){
 			ex.printStackTrace();

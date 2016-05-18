@@ -77,11 +77,11 @@ public class MySQLVentaDao implements DaoManager<Venta> {
 		String sql = "{call USP_VENTA_UPDATE(?,?,?,?,?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
+			statement.setInt(1, venta.getIdVenta());
 			statement.setString(2, venta.getNumeroVenta());
 			statement.setTimestamp(3, venta.getFechaVenta());
 			statement.setDouble(4, venta.getTotalVenta());
 			statement.setInt(5, venta.getIdVisita());
-			statement.setInt(1, venta.getIdVenta());
 			statement.executeUpdate();
 		}catch(Exception ex){
 			ex.printStackTrace();
