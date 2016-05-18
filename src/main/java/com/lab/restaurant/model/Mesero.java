@@ -1,19 +1,15 @@
 package main.java.com.lab.restaurant.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Mesero extends Persona {
 
-	private static List<Mesero> lista = new ArrayList<Mesero>();
 	public static final int LIMITE_MESAS = 5;
 	private boolean disponible;
 
 	public Mesero() {
 	}
 
-	public Mesero(int id, String nombre) {
-		super(id, nombre);
+	public Mesero(int id,String dni, String nombre, String apellidoPaterno, String apellidoMaterno) {
+		super(id,dni,nombre,apellidoPaterno,apellidoMaterno);
 		disponible = true;
 	}
 

@@ -1,12 +1,13 @@
 package main.java.com.lab.restaurant.transaction.dao;
 
 import main.java.com.lab.restaurant.model.Cliente;
-import main.java.com.lab.restaurant.model.ComprobantePago;
 import main.java.com.lab.restaurant.model.Mesa;
 import main.java.com.lab.restaurant.model.Mesero;
 import main.java.com.lab.restaurant.model.Producto;
+import main.java.com.lab.restaurant.model.Venta;
+import main.java.com.lab.restaurant.model.Venta_Detalle;
 import main.java.com.lab.restaurant.model.Visita;
-import main.java.com.lab.restaurant.model.Visita_Producto;
+
 
 public abstract class DaoFactory {
 		public static final int MYSQL = 0;
@@ -28,6 +29,6 @@ public abstract class DaoFactory {
 		public abstract DaoManager<Visita> getVisitaDao();
 		public abstract DaoManager<Mesa> getMesaDao();
 		public abstract DaoManager<Mesero> getMeseroDao();
-		public abstract DaoManager<ComprobantePago> getComprobantePagoDao();
-		public abstract DaoManager<Visita_Producto> getVisita_ProductoDao();
+		public abstract DaoManager<Venta> getVentaDao();
+		public abstract DaoManager<Venta_Detalle> getVenta_DetalleDao();
 }

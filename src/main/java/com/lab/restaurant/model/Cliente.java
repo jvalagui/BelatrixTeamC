@@ -5,8 +5,8 @@ public class Cliente extends Persona{
 		
 	}
 	
-	public Cliente(int id,String nombre) {
-		super(id,nombre);
+	public Cliente(int id,String dni, String nombre, String apellidoPaterno, String apellidoMaterno) {
+		super(id,dni,nombre,apellidoPaterno,apellidoMaterno);
 	}
 
 	@Override

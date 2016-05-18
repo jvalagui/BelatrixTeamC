@@ -1,55 +1,55 @@
 package main.java.com.lab.restaurant.transaction.dao;
 
 import main.java.com.lab.restaurant.model.Cliente;
-import main.java.com.lab.restaurant.model.ComprobantePago;
-import main.java.com.lab.restaurant.model.Producto;
 import main.java.com.lab.restaurant.model.Mesa;
 import main.java.com.lab.restaurant.model.Mesero;
+import main.java.com.lab.restaurant.model.Producto;
+import main.java.com.lab.restaurant.model.Venta;
+import main.java.com.lab.restaurant.model.Venta_Detalle;
 import main.java.com.lab.restaurant.model.Visita;
-import main.java.com.lab.restaurant.model.Visita_Producto;
+import main.java.com.lab.restaurant.transaction.daoimpl.MySQLClienteDao;
+import main.java.com.lab.restaurant.transaction.daoimpl.MySQLMesaDao;
+import main.java.com.lab.restaurant.transaction.daoimpl.MySQLMeseroDao;
+import main.java.com.lab.restaurant.transaction.daoimpl.MySQLProductoDao;
+import main.java.com.lab.restaurant.transaction.daoimpl.MySQLVentaDao;
+import main.java.com.lab.restaurant.transaction.daoimpl.MySQLVenta_DetalleDao;
+import main.java.com.lab.restaurant.transaction.daoimpl.MySQLVisitaDao;
 
 public class MySqlDaoFactory extends DaoFactory{
 
 	@Override
 	public DaoManager<Cliente> getClienteDao() {
-		// TODO Auto-generated method stub
-		return null;
+		return new MySQLClienteDao();
 	}
 
 	@Override
 	public DaoManager<Producto> getMealDao() {
-		// TODO Auto-generated method stub
-		return null;
+		return new MySQLProductoDao();
 	}
 
 	@Override
 	public DaoManager<Visita> getVisitaDao() {
-		// TODO Auto-generated method stub
-		return null;
+		return new MySQLVisitaDao();
 	}
 
 	@Override
 	public DaoManager<Mesa> getMesaDao() {
-		// TODO Auto-generated method stub
-		return null;
+		return new MySQLMesaDao();
 	}
 
 	@Override
 	public DaoManager<Mesero> getMeseroDao() {
-		// TODO Auto-generated method stub
-		return null;
+		return new MySQLMeseroDao();
 	}
 
 	@Override
-	public DaoManager<ComprobantePago> getComprobantePagoDao() {
-		// TODO Auto-generated method stub
-		return null;
+	public DaoManager<Venta> getVentaDao() {
+		return new MySQLVentaDao();
 	}
 
 	@Override
-	public DaoManager<Visita_Producto> getVisita_ProductoDao() {
-		// TODO Auto-generated method stub
-		return null;
+	public DaoManager<Venta_Detalle> getVenta_DetalleDao() {
+		return new MySQLVenta_DetalleDao();
 	}
 
 }
