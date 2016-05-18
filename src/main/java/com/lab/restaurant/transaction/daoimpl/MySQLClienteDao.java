@@ -39,7 +39,7 @@ public class MySQLClienteDao implements DaoManager<Cliente>{
 		Cliente cliente = null;
 		Connection cn = MySqlDBConexion.getConexion();
 		ResultSet rs = null;
-		String sql = "{call USP_CLIENTE_READ(?)}";
+		String sql = "{call USP_CLIENTE_OBTAIN(?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, id);
@@ -64,9 +64,6 @@ public class MySQLClienteDao implements DaoManager<Cliente>{
 			statement.setString(3, cliente.getNombre());
 			statement.setString(4, cliente.getApellidoPaterno());
 			statement.setString(5, cliente.getApellidoMaterno());
-			statement.executeUpdate();
-			sql = "Insert into TB_Cliente values (LAST_INSERT_ID())";
-			statement = cn.prepareCall(sql);
 			statement.executeUpdate();
 		}catch(Exception ex){
 			ex.printStackTrace();
