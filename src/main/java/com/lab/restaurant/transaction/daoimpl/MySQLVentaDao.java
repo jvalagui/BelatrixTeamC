@@ -38,7 +38,7 @@ public class MySQLVentaDao implements DaoManager<Venta> {
 		Venta venta = null;
 		Connection cn = MySqlDBConexion.getConexion();
 		ResultSet rs = null;
-		String sql = "{call USP_VENTA_READ(?)}";
+		String sql = "{call USP_VENTA_OBTAIN(?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, id);

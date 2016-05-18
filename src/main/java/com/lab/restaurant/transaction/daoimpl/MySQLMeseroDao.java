@@ -37,7 +37,7 @@ public class MySQLMeseroDao implements DaoManager<Mesero> {
 		Mesero mesero = null;
 		Connection cn = MySqlDBConexion.getConexion();
 		ResultSet rs = null;
-		String sql = "{call USP_MESERO_READ(?)}";
+		String sql = "{call USP_MESERO_OBTAIN(?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, id);

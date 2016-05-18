@@ -37,7 +37,7 @@ public class MySQLMesaDao implements DaoManager<Mesa> {
 		Mesa mesa = null;
 		Connection cn = MySqlDBConexion.getConexion();
 		ResultSet rs = null;
-		String sql = "{call USP_MESA_READ(?)}";
+		String sql = "{call USP_MESA_OBTAIN(?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, id);

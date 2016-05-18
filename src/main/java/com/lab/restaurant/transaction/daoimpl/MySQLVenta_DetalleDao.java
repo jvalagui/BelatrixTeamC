@@ -37,7 +37,7 @@ public class MySQLVenta_DetalleDao implements DaoManager<Venta_Detalle> {
 		Venta_Detalle ventaDetalle = null;
 		Connection cn = MySqlDBConexion.getConexion();
 		ResultSet rs = null;
-		String sql = "{call USP_VENTA_DETALLE_READ(?)}";
+		String sql = "{call USP_VENTA_DETALLE_OBTAIN(?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, id);

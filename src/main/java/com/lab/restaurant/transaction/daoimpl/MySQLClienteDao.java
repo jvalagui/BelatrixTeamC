@@ -39,7 +39,7 @@ public class MySQLClienteDao implements DaoManager<Cliente>{
 		Cliente cliente = null;
 		Connection cn = MySqlDBConexion.getConexion();
 		ResultSet rs = null;
-		String sql = "{call USP_CLIENTE_READ(?)}";
+		String sql = "{call USP_CLIENTE_OBTAIN(?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, id);

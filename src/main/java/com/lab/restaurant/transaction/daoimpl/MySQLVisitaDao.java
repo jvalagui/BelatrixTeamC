@@ -37,7 +37,7 @@ public class MySQLVisitaDao implements DaoManager<Visita>{
 		Visita visita = null;
 		Connection cn = MySqlDBConexion.getConexion();
 		ResultSet rs = null;
-		String sql = "{call USP_VISITA_READ(?)}";
+		String sql = "{call USP_VISITA_OBTAIN(?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, id);
