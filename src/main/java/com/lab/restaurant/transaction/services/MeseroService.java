@@ -1,6 +1,7 @@
 package main.java.com.lab.restaurant.transaction.services;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import main.java.com.lab.restaurant.model.Mesero;
@@ -41,18 +42,38 @@ public class MeseroService implements DaoManager<Mesero> {
 	}
 
 	// Retorna uno de los meseros menos ocupados
-	public Mesero obtenerMeseroDesocupado() {
+	public Mesero obtenerMeseroMenosOcupado() {
 		
 		List<Integer> listaIdsMeseros = new ArrayList<Integer>();
 		
 		read().forEach(mesero -> listaIdsMeseros.add(mesero.getId()));
 		
+		
+		/*ArrayList<Integer> lista = new ArrayList<Integer>();
+		lista.sort(new Comparator<Integer>(){
+			@Override
+			public int compare(Integer id1, Integer id2) {
+				return mesaService.cantidadAtendidasPorMesero(id1)-mesaService.cantidadAtendidasPorMesero(id2);
+			}
+		});
+		lista.get(0);
+		*/
+		
 		int idMeseroConMenosMesas = listaIdsMeseros.stream()
-				.min((id1, id2) -> {
-					return mesaService.cantidadAtendidasPorMesero(id1)-mesaService.cantidadAtendidasPorMesero(id2);
-				})
-				.get();
+				.min(
+					(id1, id2) -> mesaService.cantidadAtendidasPorMesero(id1)-mesaService.cantidadAtendidasPorMesero(id2)
+				).get();
 		
 		return read(idMeseroConMenosMesas);
+	}
+	
+	public boolean hayDesocupados(){
+		int idMeseroMenosOcupado = obtenerMeseroMenosOcupado().getId();
+		
+		if(mesaService.cantidadAtendidasPorMesero(idMeseroMenosOcupado)>=Mesero.LIMITE_MESAS){
+			return false;
+		}
+		
+		return true;
 	}
 }

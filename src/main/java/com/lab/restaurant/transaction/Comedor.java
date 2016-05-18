@@ -8,13 +8,15 @@ import main.java.com.lab.restaurant.model.Mesero;
 import main.java.com.lab.restaurant.model.Visita;
 import main.java.com.lab.restaurant.transaction.services.MesaService;
 import main.java.com.lab.restaurant.transaction.services.MeseroService;
+import main.java.com.lab.restaurant.transaction.services.VisitaService;
 
 public class Comedor{
 	MesaService mesaService = new MesaService();
-	MeseroService meseroservice = new MeseroService();
+	MeseroService meseroService = new MeseroService();
+	VisitaService visitaService = new VisitaService();
 
 	private List<Mesa> listaMesas = mesaService.read();
-	private List<Mesero> listaMeseros = meseroservice.read();
+	private List<Mesero> listaMeseros = meseroService.read();
 	
 	public boolean lleno(){
 		boolean lleno = true;
@@ -62,7 +64,7 @@ public class Comedor{
 	}
 	
 	public boolean asignarMesero(int idMesero, int idMesa){
-		if(mesaService.cantidadAtendidasPorMesero(idMesero) <= Mesero.LIMITE_MESAS){
+		if(mesaService.cantidadAtendidasPorMesero(idMesero) < Mesero.LIMITE_MESAS){
 			Mesa mesa = mesaService.read(idMesa);
 			mesa.setIdMesero(idMesero);
 			return true;

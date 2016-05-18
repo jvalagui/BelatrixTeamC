@@ -21,18 +21,39 @@ public class VisitaService implements DaoManager<Visita> {
 	}
 
 	@Override
-	public void create(Visita t) {
-		visitaDao.create(t);
+	public void create(Visita visita) {
+		int idVisita = generarId(visita.getId());
+		
+		visita.setId(idVisita);
+		visitaDao.create(visita);
 	}
 
 	@Override
-	public void update(Visita t) {
-		visitaDao.update(t);
+	public void update(Visita visita) {
+		visitaDao.update(visita);
 	}
 
 	@Override
 	public void delete(int id) {
 		visitaDao.delete(id);
+	}
+	
+	public int generarId(int id){
+		if(id==0){
+			int nuevoId;
+			
+			//Obtener el maximo id y sumarle 1
+			if(read().isEmpty()){
+				nuevoId = 1;
+			}else{
+				int maximoId = read().stream().max((visita1, visita2)-> visita1.getId()-visita2.getId()).get().getId();
+				nuevoId = maximoId+1;
+			}
+			
+			return nuevoId;
+		}else{ 
+			return id; 
+		}
 	}
 
 }
