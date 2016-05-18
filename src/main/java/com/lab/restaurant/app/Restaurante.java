@@ -29,23 +29,38 @@ public class Restaurante {
 			BufferedReader bufferRead = new BufferedReader(
 					new InputStreamReader(System.in));
 			while (true) {
-				System.out.println("INGRESE UN COMANDO: VISITA / CLIENTE / SALA ESPERA / SALIR");
+				System.out.println("INGRESE UN COMANDO: VISITA / CLIENTE / MESERO / MESA / SALA ESPERA / SALIR");
 				String line = bufferRead.readLine();
 				switch (line) {
 					case "SALA ESPERA":
 						System.out.println(restaurante.recepcion.getSalaDeEspera());
 						break;
+						
 					case "VISITA":
-						System.out.println("Visita -> NUEVO / DESPEDIR / LISTAR");
+						System.out.println("Visita -> NUEVO / DESPEDIR / LISTAR / SALIR");
 						ejecutarVisita(restaurante, bufferRead);
 						break;
+						
 					case "CLIENTE":
-						System.out.println("Cliente -> NUEVO / LISTAR");
+						System.out.println("Cliente -> NUEVO / LISTAR / SALIR");
 						ejecutarCliente(restaurante, bufferRead);
 						break;
+						
+					case "MESERO":
+						System.out.println("MESERO -> LISTAR / SALIR");
+						ejecutarMesero(restaurante, bufferRead);
+						break;
+						
+					case "MESA":
+						System.out.println("MESA -> LISTAR / SALIR");
+						ejecutarMesa(restaurante, bufferRead);
+						break;
+						
 					case "SALIR":
 						System.out.println("CHAU");
 						System.exit(0);
+						break;
+						
 					default:
 						System.out.println("Comando desconocido.");
 						break;
@@ -171,6 +186,39 @@ public class Restaurante {
 				}catch(Exception e){
 					System.out.println("Error al registrar cliente. Verifique que los datos esten ingresados correctamente.");
 				}
+				break;
+			default:
+				System.out.println("Comando incorrecto");
+			case "SALIR":
+				System.out.println("Saliendo..\n");
+				break;
+
+		}
+	}
+
+	public static void ejecutarMesero(Restaurante restaurante,
+			BufferedReader br) throws IOException {
+		String linea = br.readLine();
+
+		switch (linea) {
+			case "LISTAR":
+				restaurante.meseroService.read().forEach(System.out::println);
+				break;
+			default:
+				System.out.println("Comando incorrecto");
+			case "SALIR":
+				System.out.println("Saliendo..\n");
+				break;
+
+		}
+	}
+	public static void ejecutarMesa(Restaurante restaurante,
+			BufferedReader br) throws IOException {
+		String linea = br.readLine();
+
+		switch (linea) {
+			case "LISTAR":
+				restaurante.mesaService.read().forEach(System.out::println);
 				break;
 			default:
 				System.out.println("Comando incorrecto");
