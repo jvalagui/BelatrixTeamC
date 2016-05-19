@@ -65,7 +65,7 @@ public class MySQLClienteDao implements DaoManager<Cliente>{
 			statement.setString(4, cliente.getApellidoPaterno());
 			statement.setString(5, cliente.getApellidoMaterno());
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
@@ -83,7 +83,7 @@ public class MySQLClienteDao implements DaoManager<Cliente>{
 			statement.setString(4, cliente.getApellidoPaterno());
 			statement.setString(5, cliente.getApellidoMaterno());
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
@@ -97,7 +97,7 @@ public class MySQLClienteDao implements DaoManager<Cliente>{
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, id);
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		

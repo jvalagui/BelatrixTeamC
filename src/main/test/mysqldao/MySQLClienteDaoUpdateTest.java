@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -54,7 +55,7 @@ public class MySQLClienteDaoUpdateTest {
 			statement.setString(4, cliente.getApellidoPaterno());
 			statement.setString(5, cliente.getApellidoMaterno());
 			Assert.assertEquals(1, statement.executeUpdate());
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 	}
