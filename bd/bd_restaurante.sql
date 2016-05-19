@@ -10,6 +10,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema bd_restaurante
 -- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `bd_restaurante` ;
 
 -- -----------------------------------------------------
 -- Schema bd_restaurante
@@ -187,9 +188,9 @@ DELIMITER ;
 
 DELIMITER $$
 USE `bd_restaurante`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_cliente_obtain`(dni CHAR(8))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_cliente_obtain`(id INT)
 BEGIN
-	SELECT p.* FROM tb_cliente c JOIN tb_persona p ON c.id_cliente = p.id_persona WHERE dni_persona = dni;
+	SELECT p.* FROM tb_cliente c JOIN tb_persona p ON c.id_cliente = p.id_persona WHERE id_persona = id;
 END$$
 
 DELIMITER ;
@@ -319,9 +320,9 @@ DELIMITER ;
 
 DELIMITER $$
 USE `bd_restaurante`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_mesero_obtain`(dni CHAR(8))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_mesero_obtain`(id INT)
 BEGIN
-	SELECT p.* FROM tb_mesero c JOIN tb_persona p ON c.id_mesero = p.id_persona WHERE dni_persona = dni;
+	SELECT p.* FROM tb_mesero c JOIN tb_persona p ON c.id_mesero = p.id_persona WHERE id_persona = id;
 END$$
 
 DELIMITER ;
