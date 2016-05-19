@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `bd_restaurante`.`tb_persona` (
   `ape_mat_persona` VARCHAR(30) NOT NULL COMMENT '',
   PRIMARY KEY (`id_persona`)  COMMENT '')
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
+AUTO_INCREMENT = 9
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -161,7 +161,7 @@ DELIMITER $$
 USE `bd_restaurante`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_cliente_create`(id INT, dni CHAR(8), nombre VARCHAR(30), ape_pat VARCHAR(30), ape_mat VARCHAR(30))
 BEGIN
-	INSERT tb_persona VALUES(id, dni, nombre, ape_pat, ape_mat);
+	INSERT tb_persona VALUES(null, dni, nombre, ape_pat, ape_mat);
 	INSERT tb_cliente VALUES(LAST_INSERT_ID());
 END$$
 
@@ -293,7 +293,7 @@ DELIMITER $$
 USE `bd_restaurante`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_mesero_create`(id INT, dni CHAR(8), nombre VARCHAR(30), ape_pat VARCHAR(30), ape_mat VARCHAR(30))
 BEGIN
-	INSERT tb_persona VALUES(id, dni, nombre, ape_pat, ape_mat);
+	INSERT tb_persona VALUES(null, dni, nombre, ape_pat, ape_mat);
 	INSERT tb_mesero VALUES(LAST_INSERT_ID());
 END$$
 
