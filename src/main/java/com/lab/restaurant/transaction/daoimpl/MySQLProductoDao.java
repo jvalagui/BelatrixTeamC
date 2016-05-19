@@ -3,6 +3,7 @@ package main.java.com.lab.restaurant.transaction.daoimpl;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class MySQLProductoDao implements DaoManager<Producto>{
 						rs.getInt(4), rs.getDouble(5), rs.getDouble(6), rs.getInt(7));
 				lista.add(producto);
 			}
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		return lista;
@@ -47,7 +48,7 @@ public class MySQLProductoDao implements DaoManager<Producto>{
 				producto = new Producto(rs.getInt(1), rs.getString(2), rs.getInt(3),
 						rs.getInt(4), rs.getDouble(5), rs.getDouble(6), rs.getInt(7));
 			}
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		return producto;
@@ -67,7 +68,7 @@ public class MySQLProductoDao implements DaoManager<Producto>{
 			statement.setDouble(6, producto.getPrecio());
 			statement.setInt(7, producto.getStock());
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
@@ -87,7 +88,7 @@ public class MySQLProductoDao implements DaoManager<Producto>{
 			statement.setDouble(6, producto.getPrecio());
 			statement.setInt(7, producto.getStock());
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
@@ -101,7 +102,7 @@ public class MySQLProductoDao implements DaoManager<Producto>{
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, id);
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		

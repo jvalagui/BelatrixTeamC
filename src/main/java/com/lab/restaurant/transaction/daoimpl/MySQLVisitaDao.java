@@ -62,7 +62,7 @@ public class MySQLVisitaDao implements DaoManager<Visita>{
 			statement.setInt(2, visita.getIdCliente());
 			statement.setInt(3, visita.getIdMesero());
 			statement.setInt(4, visita.getIdMesa());
-			statement.setInt(4, visita.getEstado());
+			statement.setInt(5, visita.getEstado());
 			statement.executeUpdate();
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -80,7 +80,7 @@ public class MySQLVisitaDao implements DaoManager<Visita>{
 			statement.setInt(2, visita.getIdCliente());
 			statement.setInt(3, visita.getIdMesero());
 			statement.setInt(4, visita.getIdMesa());
-			statement.setInt(4, visita.getEstado());
+			statement.setInt(5, visita.getEstado());
 			statement.executeUpdate();
 		}catch(Exception ex){
 			ex.printStackTrace();

@@ -3,6 +3,7 @@ package main.java.com.lab.restaurant.transaction.daoimpl;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class MySQLMeseroDao implements DaoManager<Mesero> {
 				Mesero mesero = new Mesero(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
 				lista.add(mesero);
 			}
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		return lista;
@@ -45,7 +46,7 @@ public class MySQLMeseroDao implements DaoManager<Mesero> {
 			if(rs.next()){
 				mesero = new Mesero(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
 			}
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		return mesero;
@@ -63,7 +64,7 @@ public class MySQLMeseroDao implements DaoManager<Mesero> {
 			statement.setString(4, mesero.getApellidoPaterno());
 			statement.setString(5, mesero.getApellidoMaterno());
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
@@ -81,7 +82,7 @@ public class MySQLMeseroDao implements DaoManager<Mesero> {
 			statement.setString(4, mesero.getApellidoPaterno());
 			statement.setString(5, mesero.getApellidoMaterno());
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
@@ -95,7 +96,7 @@ public class MySQLMeseroDao implements DaoManager<Mesero> {
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, id);
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 	}

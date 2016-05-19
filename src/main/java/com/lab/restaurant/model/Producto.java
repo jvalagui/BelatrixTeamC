@@ -9,6 +9,7 @@ public class Producto {
     private int tipo;
     private int categoria;
     private double costo;
+
     private double precio;
     private int stock;
 
@@ -71,4 +72,5 @@ public class Producto {
 	public void setCosto(double costo) {
 		this.costo = costo;
 	}
+
 }

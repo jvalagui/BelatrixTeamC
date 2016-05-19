@@ -15,7 +15,6 @@ import main.java.com.lab.restaurant.transaction.daoimpl.MySQLVentaDao;
 import main.java.com.lab.restaurant.transaction.daoimpl.MySQLVenta_DetalleDao;
 import main.java.com.lab.restaurant.transaction.daoimpl.MySQLVisitaDao;
 
-
 public class MySqlDaoFactory extends DaoFactory{
 
 	@Override
@@ -52,7 +51,5 @@ public class MySqlDaoFactory extends DaoFactory{
 	public DaoManager<Venta_Detalle> getVenta_DetalleDao() {
 		return new MySQLVenta_DetalleDao();
 	}
-
-
 
 }

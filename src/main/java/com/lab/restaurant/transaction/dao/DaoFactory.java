@@ -8,6 +8,7 @@ import main.java.com.lab.restaurant.model.Venta;
 import main.java.com.lab.restaurant.model.Venta_Detalle;
 import main.java.com.lab.restaurant.model.Visita;
 
+
 public abstract class DaoFactory {
 		public static final int MYSQL = 0;
 		public static final int LOCAL = 1;
