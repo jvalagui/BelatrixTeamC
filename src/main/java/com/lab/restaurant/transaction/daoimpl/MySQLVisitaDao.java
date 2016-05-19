@@ -23,7 +23,7 @@ public class MySQLVisitaDao implements DaoManager<Visita>{
 			rs = statement.executeQuery();
 			lista = new ArrayList<Visita>();
 			while(rs.next()){
-				Visita visita = new Visita(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4));
+				Visita visita = new Visita(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
 				lista.add(visita);
 			}
 		}catch(Exception ex){
@@ -43,7 +43,7 @@ public class MySQLVisitaDao implements DaoManager<Visita>{
 			statement.setInt(1, id);
 			rs = statement.executeQuery();
 			if(rs.next()){
-				visita = new Visita(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4));
+				visita = new Visita(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
 			}
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -55,13 +55,14 @@ public class MySQLVisitaDao implements DaoManager<Visita>{
 	@Override
 	public void create(Visita visita) {
 		Connection cn = MySqlDBConexion.getConexion();
-		String sql = "{call USP_VISITA_CREATE(?,?,?,?)}";
+		String sql = "{call USP_VISITA_CREATE(?,?,?,?,?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, visita.getId());
 			statement.setInt(2, visita.getIdCliente());
-			statement.setInt(3, visita.getEstado());
+			statement.setInt(3, visita.getIdMesero());
 			statement.setInt(4, visita.getIdMesa());
+			statement.setInt(5, visita.getEstado());
 			statement.executeUpdate();
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -72,13 +73,14 @@ public class MySQLVisitaDao implements DaoManager<Visita>{
 	@Override
 	public void update(Visita visita) {
 		Connection cn = MySqlDBConexion.getConexion();
-		String sql = "{call USP_VISITA_UPDATE(?,?,?,?)}";
+		String sql = "{call USP_VISITA_UPDATE(?,?,?,?,?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
-			statement.setInt(2, visita.getIdCliente());
-			statement.setInt(3, visita.getEstado());
-			statement.setInt(4, visita.getIdMesa());
 			statement.setInt(1, visita.getId());
+			statement.setInt(2, visita.getIdCliente());
+			statement.setInt(3, visita.getIdMesero());
+			statement.setInt(4, visita.getIdMesa());
+			statement.setInt(5, visita.getEstado());
 			statement.executeUpdate();
 		}catch(Exception ex){
 			ex.printStackTrace();

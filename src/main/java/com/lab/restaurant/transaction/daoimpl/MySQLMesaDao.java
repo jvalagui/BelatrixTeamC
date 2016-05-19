@@ -3,6 +3,7 @@ package main.java.com.lab.restaurant.transaction.daoimpl;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +24,10 @@ public class MySQLMesaDao implements DaoManager<Mesa> {
 			rs = statement.executeQuery();
 			lista = new ArrayList<Mesa>();
 			while(rs.next()){
-				Mesa mesa = new Mesa(rs.getInt(1), rs.getInt(2), rs.getBoolean(3));
+				Mesa mesa = new Mesa(rs.getInt(1), rs.getBoolean(2));
 				lista.add(mesa);
 			}
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		return lista;
@@ -43,9 +44,9 @@ public class MySQLMesaDao implements DaoManager<Mesa> {
 			statement.setInt(1, id);
 			rs = statement.executeQuery();
 			if(rs.next()){
-				mesa = new Mesa(rs.getInt(1), rs.getInt(2), rs.getBoolean(3));
+				mesa = new Mesa(rs.getInt(1), rs.getBoolean(2));
 			}
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		return mesa;
@@ -54,14 +55,13 @@ public class MySQLMesaDao implements DaoManager<Mesa> {
 	@Override
 	public void create(Mesa mesa) {
 		Connection cn = MySqlDBConexion.getConexion();
-		String sql = "{call USP_MESA_CREATE(?,?,?)}";
+		String sql = "{call USP_MESA_CREATE(?,?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, mesa.getId());
-			statement.setInt(2, mesa.getIdMesero());
-			statement.setBoolean(3, mesa.isUsada());
+			statement.setBoolean(2, mesa.isUsada());
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
@@ -70,14 +70,13 @@ public class MySQLMesaDao implements DaoManager<Mesa> {
 	@Override
 	public void update(Mesa mesa) {
 		Connection cn = MySqlDBConexion.getConexion();
-		String sql = "{call USP_MESA_UPDATE(?,?,?)}";
+		String sql = "{call USP_MESA_UPDATE(?,?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
-			statement.setInt(2, mesa.getIdMesero());
-			statement.setBoolean(3, mesa.isUsada());
 			statement.setInt(1, mesa.getId());
+			statement.setBoolean(2, mesa.isUsada());
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
@@ -91,7 +90,7 @@ public class MySQLMesaDao implements DaoManager<Mesa> {
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, id);
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		

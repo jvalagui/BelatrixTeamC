@@ -65,10 +65,7 @@ public class MySQLClienteDao implements DaoManager<Cliente>{
 			statement.setString(4, cliente.getApellidoPaterno());
 			statement.setString(5, cliente.getApellidoMaterno());
 			statement.executeUpdate();
-			sql = "Insert into TB_Cliente values (LAST_INSERT_ID())";
-			statement = cn.prepareCall(sql);
-			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
@@ -80,13 +77,13 @@ public class MySQLClienteDao implements DaoManager<Cliente>{
 		String sql = "{call USP_CLIENTE_UPDATE(?,?,?,?,?)}";
 		try{
 			PreparedStatement statement = cn.prepareStatement(sql);
+			statement.setInt(1, cliente.getId());
 			statement.setString(2, cliente.getDni());
 			statement.setString(3, cliente.getNombre());
 			statement.setString(4, cliente.getApellidoPaterno());
 			statement.setString(5, cliente.getApellidoMaterno());
-			statement.setInt(1, cliente.getId());
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
@@ -100,7 +97,7 @@ public class MySQLClienteDao implements DaoManager<Cliente>{
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, id);
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		

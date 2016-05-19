@@ -16,8 +16,10 @@ public class MySqlDBConexion {
 			
 			con = DriverManager.getConnection(url, DB_Properties.MYSQL_USER, DB_Properties.MYSQL_PASSWORD);
 		} catch (ClassNotFoundException ex) {
+			System.out.println("MySqlDBConexion.getConexion()" + ex.getMessage());
 			System.out.println("No hay Driver!!");
 		} catch (SQLException ex) {
+			System.out.println("MySqlDBConexion.getConexion()" + ex.getMessage());
 			System.out.println("Error con la BD");
 		}
 		return con;

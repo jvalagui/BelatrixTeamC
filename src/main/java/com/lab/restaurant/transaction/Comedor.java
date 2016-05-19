@@ -8,13 +8,15 @@ import main.java.com.lab.restaurant.model.Mesero;
 import main.java.com.lab.restaurant.model.Visita;
 import main.java.com.lab.restaurant.transaction.services.MesaService;
 import main.java.com.lab.restaurant.transaction.services.MeseroService;
+import main.java.com.lab.restaurant.transaction.services.VisitaService;
 
 public class Comedor{
 	MesaService mesaService = new MesaService();
-	MeseroService meseroservice = new MeseroService();
+	MeseroService meseroService = new MeseroService();
+	VisitaService visitaService = new VisitaService();
 
 	private List<Mesa> listaMesas = mesaService.read();
-	private List<Mesero> listaMeseros = meseroservice.read();
+	private List<Mesero> listaMeseros = meseroService.read();
 	
 	public boolean lleno(){
 		boolean lleno = true;
@@ -46,16 +48,25 @@ public class Comedor{
 		return disponibles;
 	}
 	
-	public void asignarMesa(int idMesa, Visita visita){
+	public Mesa asignarMesa(Visita visita){
+		
+		if(mesaService.obtenerMesaDisponible()==null){
+			return null;
+		}
+		
+		int idMesa = mesaService.obtenerMesaDisponible().getId();
+		
 		Mesa mesa = mesaService.read(idMesa);
 		mesa.setUsada(true);
 		visita.setIdMesa(idMesa);
+		
+		return mesa;
 	}
 	
-	public boolean asignarMesero(int idMesero, int idMesa){
-		if(mesaService.cantidadAtendidasPorMesero(idMesero) <= Mesero.LIMITE_MESAS){
-			Mesa mesa = mesaService.read(idMesa);
-			mesa.setIdMesero(idMesero);
+	public boolean asignarMesero(int idMesero, int idVisita){
+		if(visitaService.cantidadAtendidasPorMesero(idMesero) < Mesero.LIMITE_MESAS){
+			Visita visita = visitaService.read(idVisita);
+			visita.setIdMesero(idMesero);
 			return true;
 		}else{
 			System.out.println("El mesero ya llegó a su límite de mesas");
@@ -66,7 +77,6 @@ public class Comedor{
 			
 	public void despedirVisita(Visita visita){
 		Mesa mesa = mesaService.read(visita.getIdMesa());
-		mesa.setIdMesero(-1);
 		mesa.setUsada(false);
 	}
 	

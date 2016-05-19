@@ -73,9 +73,9 @@ public class MySQLVenta_DetalleDao implements DaoManager<Venta_Detalle> {
 		String sql = "{call USP_VENTA_DETALLE_UPDATE(?,?,?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
+			statement.setInt(1, ventaDetalle.getIdVenta());
 			statement.setInt(2, ventaDetalle.getIdProducto());
 			statement.setInt(3, ventaDetalle.getCantidad());
-			statement.setInt(1, ventaDetalle.getIdVenta());
 			statement.executeUpdate();
 		}catch(Exception ex){
 			ex.printStackTrace();
