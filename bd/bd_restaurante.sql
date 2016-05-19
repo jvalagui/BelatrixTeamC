@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `bd_restaurante`.`tb_persona` (
   `ape_mat_persona` VARCHAR(30) NOT NULL COMMENT '',
   PRIMARY KEY (`id_persona`)  COMMENT '')
 ENGINE = InnoDB
-AUTO_INCREMENT = 9
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `bd_restaurante`.`tb_mesa` (
   `usada_mesa` TINYINT(1) NOT NULL COMMENT '',
   PRIMARY KEY (`id_mesa`)  COMMENT '')
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `bd_restaurante`.`tb_producto` (
   `stock_producto` INT(11) NOT NULL COMMENT '',
   PRIMARY KEY (`id_producto`)  COMMENT '')
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `bd_restaurante`.`tb_visita` (
     FOREIGN KEY (`id_mesa`)
     REFERENCES `bd_restaurante`.`tb_mesa` (`id_mesa`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `bd_restaurante`.`tb_venta` (
     FOREIGN KEY (`id_visita`)
     REFERENCES `bd_restaurante`.`tb_visita` (`id_visita`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
 
