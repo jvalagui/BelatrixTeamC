@@ -12,24 +12,24 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.java.com.lab.restaurant.model.Cliente;
+import main.java.com.lab.restaurant.model.Mesa;
 import main.java.com.lab.restaurant.utils.MySqlDBConexion;
 
-public class MySQLClienteDaoReadTest {
+public class MySQLMesaDaoReadTest {
 	Connection cn;
 	String sql;
 	String sql2;
 	ResultSet rs;
 	int id;
-	Cliente cliente;
-	List<Cliente> lista;
+	Mesa mesa;
+	List<Mesa> lista;
 
 	@Before
 	public void setUp() throws Exception {
 		cn = MySqlDBConexion.getConexion();
+		sql = "{call USP_MESA_READ}";
+		sql2 = "{call USP_MESA_OBTAIN(?)}";
 		id = 1;
-		sql = "{call USP_CLIENTE_READ}";
-		sql2 = "{call USP_CLIENTE_OBTAIN(?)}";
 	}
 	
 	@Test
@@ -44,14 +44,14 @@ public class MySQLClienteDaoReadTest {
 	}
 
 	@Test
-	public void testClienteReadAll(){
+	public void testMesaReadAll() {
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
 			rs = statement.executeQuery();
-			lista = new ArrayList<Cliente>();
+			lista = new ArrayList<Mesa>();
 			while(rs.next()){
-				Cliente cliente = new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
-				lista.add(cliente);
+				Mesa mesa = new Mesa(rs.getInt(1), rs.getBoolean(2));
+				lista.add(mesa);
 			}
 		}catch(SQLException ex){
 			ex.printStackTrace();
@@ -61,19 +61,19 @@ public class MySQLClienteDaoReadTest {
 	}
 	
 	@Test
-	public void testClienteRead(){
+	public void testMesaRead(){
 		try{
 			CallableStatement statement = cn.prepareCall(sql2);
 			statement.setInt(1, id);
 			rs = statement.executeQuery();
 			if(rs.next()){
-				cliente = new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				mesa = new Mesa(rs.getInt(1), rs.getBoolean(2));
 			}
 		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
-		assertNotNull(cliente);
+		assertNotNull(mesa);
 	}
 
 }
