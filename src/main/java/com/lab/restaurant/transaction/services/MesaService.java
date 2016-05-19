@@ -37,14 +37,6 @@ public class MesaService implements DaoManager<Mesa>{
 		mesaDao.delete(id);
 	}
 
-	public int cantidadAtendidasPorMesero(int idMesero){
-		int c = 0;
-		for(Mesa reg : read()){
-			if(reg.getIdMesero() == idMesero){ c++; }
-		}
-		return c;
-	}
-	
 	public List<Mesa> getMesasDisponibles(){
 		List<Mesa> disponibles = new ArrayList<>();
 		for(Mesa m : read()){
@@ -56,6 +48,6 @@ public class MesaService implements DaoManager<Mesa>{
 	}
 	
 	public Mesa obtenerMesaDisponible(){
-		return read().get(((int)Math.random()*getMesasDisponibles().size()));
+		return getMesasDisponibles().isEmpty() ? null : getMesasDisponibles().get(((int)Math.random()*getMesasDisponibles().size()));
 	}
 }

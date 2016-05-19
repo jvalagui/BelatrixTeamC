@@ -75,11 +75,11 @@ public class MySQLMeseroDao implements DaoManager<Mesero> {
 		String sql = "{call USP_MESERO_UPDATE(?,?,?,?,?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
+			statement.setInt(1, mesero.getId());
 			statement.setString(2, mesero.getDni());
 			statement.setString(3, mesero.getNombre());
 			statement.setString(4, mesero.getApellidoPaterno());
 			statement.setString(5, mesero.getApellidoMaterno());
-			statement.setInt(1, mesero.getId());
 			statement.executeUpdate();
 		}catch(Exception ex){
 			ex.printStackTrace();

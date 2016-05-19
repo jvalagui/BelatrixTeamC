@@ -45,7 +45,7 @@ public class MySQLClienteDaoReadTest {
 	}
 
 	@Test
-	public void testClienteRead(){
+	public void testClienteReadAll(){
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
 			rs = statement.executeQuery();
@@ -59,6 +59,22 @@ public class MySQLClienteDaoReadTest {
 		}
 		
 		assertNotNull(lista);
+	}
+	
+	@Test
+	public void testClienteRead(){
+		try{
+			CallableStatement statement = cn.prepareCall(sql2);
+			statement.setInt(1, id);
+			rs = statement.executeQuery();
+			if(rs.next()){
+				cliente = new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+			}
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}
+		
+		assertNotNull(cliente);
 	}
 
 }

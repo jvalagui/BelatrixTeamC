@@ -79,13 +79,13 @@ public class MySQLProductoDao implements DaoManager<Producto>{
 		String sql = "{call USP_PRODUCTO_UPDATE(?,?,?,?,?,?,?)}";
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
+			statement.setInt(1, producto.getId());
 			statement.setString(2, producto.getNombre());
 			statement.setInt(3, producto.getTipo());
 			statement.setInt(4, producto.getCategoria());
 			statement.setDouble(5, producto.getCosto());
 			statement.setDouble(6, producto.getPrecio());
 			statement.setInt(7, producto.getStock());
-			statement.setInt(1, producto.getId());
 			statement.executeUpdate();
 		}catch(Exception ex){
 			ex.printStackTrace();

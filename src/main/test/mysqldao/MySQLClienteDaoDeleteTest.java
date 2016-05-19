@@ -4,24 +4,22 @@ import static org.junit.Assert.*;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.ResultSet;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import junit.framework.Assert;
-import main.java.com.lab.restaurant.model.Producto;
 import main.java.com.lab.restaurant.utils.MySqlDBConexion;
 
-public class MySQLProductoDaoDeleteTest {
+public class MySQLClienteDaoDeleteTest {
 	Connection cn;
 	String sql;
 	int id;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		cn = MySqlDBConexion.getConexion();
-		sql = "{call USP_PRODUCTO_DELETE(?)}";
+		sql = "{call USP_CLIENTE_DELETE(?)}";
 		id = 1;
 	}
 	
@@ -38,7 +36,7 @@ public class MySQLProductoDaoDeleteTest {
 
 	@SuppressWarnings("deprecation")
 	@Test
-	public void testProductoDelete(){
+	public void testClienteDelete() {
 		try{
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, id);

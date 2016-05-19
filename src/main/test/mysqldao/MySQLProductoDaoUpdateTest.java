@@ -17,7 +17,6 @@ public class MySQLProductoDaoUpdateTest {
 	Connection cn;
 	String sql;
 	Producto producto;
-	ResultSet rs;
 	
 	@Before
 	public void setUp() throws Exception {
