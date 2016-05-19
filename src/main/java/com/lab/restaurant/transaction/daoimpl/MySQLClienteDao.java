@@ -65,9 +65,6 @@ public class MySQLClienteDao implements DaoManager<Cliente>{
 			statement.setString(4, cliente.getApellidoPaterno());
 			statement.setString(5, cliente.getApellidoMaterno());
 			statement.executeUpdate();
-			sql = "Insert into TB_Cliente values (LAST_INSERT_ID())";
-			statement = cn.prepareCall(sql);
-			statement.executeUpdate();
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}
