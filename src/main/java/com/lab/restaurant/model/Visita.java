@@ -69,7 +69,7 @@ public class Visita{
 	@Override
 	public String toString() {
 		return "Visita [id=" + id + ", idCliente=" + idCliente + ", idMesero=" + idMesero + ", idMesa=" + idMesa
-				+ ", estado=" + estado + "]";
+				+ ", estado=" + getEstadoString() + "]";
 	}
 	
 	public String getEstadoString(){

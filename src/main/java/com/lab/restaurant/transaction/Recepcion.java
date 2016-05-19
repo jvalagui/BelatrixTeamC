@@ -35,6 +35,9 @@ public class Recepcion {
 		visita = new Visita(idVisita,cliente.getId());
 		visita.setEstado(VisitaEstados.EN_RECEPCION);
 		visitaService.create(visita);
+		for(Visita itemVisita : visitaService.noAsignadas()){
+			asignarMesa(itemVisita.getId());
+		}
 	}
 	
 	// Cliente antiguo
@@ -42,6 +45,9 @@ public class Recepcion {
 		visita = new Visita(idVisita,idCliente);
 		visita.setEstado(VisitaEstados.EN_RECEPCION);
 		visitaService.create(visita);
+		for(Visita itemVisita : visitaService.noAsignadas()){
+			asignarMesa(itemVisita.getId());
+		}
 	}
 	
 	public String asignarMesa(int idVisita){

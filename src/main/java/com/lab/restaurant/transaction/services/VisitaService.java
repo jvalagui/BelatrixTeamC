@@ -1,11 +1,10 @@
 package main.java.com.lab.restaurant.transaction.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.org.apache.bcel.internal.classfile.ConstantNameAndType;
 
 import main.java.com.lab.restaurant.constantes.VisitaEstados;
-import main.java.com.lab.restaurant.model.Mesa;
 import main.java.com.lab.restaurant.model.Visita;
 import main.java.com.lab.restaurant.transaction.dao.DaoFactory;
 import main.java.com.lab.restaurant.transaction.dao.DaoManager;
@@ -28,6 +27,7 @@ public class VisitaService implements DaoManager<Visita> {
 	public void create(Visita visita) {
 
 		int idVisita = generarId(visita.getId());
+		
 		visita.setId(idVisita);
 		visitaDao.create(visita);
 	}
@@ -59,8 +59,6 @@ public class VisitaService implements DaoManager<Visita> {
 			return id; 
 		}
 	}
-	
-
 	public int cantidadAtendidasPorMesero(int idMesero){
 		int c = 0;
 		for(Visita reg : read()){
@@ -69,4 +67,16 @@ public class VisitaService implements DaoManager<Visita> {
 		return c;
 	}
 
+	public List<Visita> noAsignadas(){
+		
+		List<Visita> visitasNoAsignadas = new ArrayList<Visita>();
+		
+		for(Visita itemVisita : read()){
+			if(itemVisita.getEstado()==VisitaEstados.EN_RECEPCION){
+				visitasNoAsignadas.add(itemVisita);
+			}
+		}
+		
+		return visitasNoAsignadas;
+	}
 }

@@ -30,14 +30,16 @@ public class Restaurante {
 					new InputStreamReader(System.in));
 			while (true) {
 				System.out.println("INGRESE UN COMANDO: VISITA / CLIENTE / MESERO / MESA / SALA ESPERA / SALIR");
-				String line = bufferRead.readLine();
+				String line = bufferRead.readLine(); 
+				line = line.toUpperCase();
+
 				switch (line) {
 					case "SALA ESPERA":
 						System.out.println(restaurante.recepcion.getSalaDeEspera());
 						break;
 						
 					case "VISITA":
-						System.out.println("Visita -> NUEVO / DESPEDIR / LISTAR / SALIR");
+						System.out.println("Visita -> NUEVO / DESPEDIR / LISTAR / NO ASIGNADAS / SALIR");
 						ejecutarVisita(restaurante, bufferRead);
 						break;
 						
@@ -93,10 +95,6 @@ public class Restaurante {
 				+ Mesero.LIMITE_MESAS + " mesas.\n");
 
 		
-		visitaService.read().forEach(
-				visita -> recepcion.asignarMesa(visita
-						.getId())
-				);
 
 		System.out.println("He generado y asignado "
 				+ visitaService.read().size() + " visitas.");
@@ -104,7 +102,7 @@ public class Restaurante {
 
 	public static void ejecutarVisita(Restaurante restaurante, BufferedReader br)
 			throws IOException {
-		String linea = br.readLine();
+		String linea = br.readLine(); linea = linea.toUpperCase();
 
 		switch (linea) {
 			case "LISTAR":
@@ -129,13 +127,16 @@ public class Restaurante {
 				try{
 					String[] datos = linea.split(",");
 					if(datos.length<2){throw new Exception();}
+					
 					if(datos.length<3){
 						if(restaurante.clienteService.read(Integer.valueOf(datos[1].trim()))==null){throw new Exception();}
 						restaurante.recepcion.generarVisita(Integer.valueOf(datos[0].trim()), Integer.valueOf(datos[1].trim()));
 					}else{
 						restaurante.recepcion.generarVisita(Integer.valueOf(datos[0].trim()), Integer.valueOf(datos[1].trim()), datos[2].trim(), datos[3].trim(), datos[4].trim(), datos[5].trim());
 					}
+					
 					System.out.println("Visita generada.");
+					
 					
 				}catch(Exception e){
 					System.out.println("Error al registrar visita. Compruebe que los datos sean ingresados correctamente.");
@@ -154,7 +155,13 @@ public class Restaurante {
 				System.out.println("Visita despedida");
 				break;
 			
-			
+			case "NO ASIGNADAS":
+				System.out.println("Visitas no asignadas");
+				if(restaurante.visitaService.noAsignadas().isEmpty()){
+					System.out.println("No hay visitas asignadas.\n");
+				}
+				restaurante.visitaService.noAsignadas().forEach(System.out::println);
+				break;
 			default:
 				System.out.println("Comando incorrecto");
 			case "SALIR":
@@ -165,7 +172,7 @@ public class Restaurante {
 
 	public static void ejecutarCliente(Restaurante restaurante,
 			BufferedReader br) throws IOException {
-		String linea = br.readLine();
+		String linea = br.readLine(); linea = linea.toUpperCase();
 
 		switch (linea) {
 			case "LISTAR":
@@ -198,7 +205,7 @@ public class Restaurante {
 
 	public static void ejecutarMesero(Restaurante restaurante,
 			BufferedReader br) throws IOException {
-		String linea = br.readLine();
+		String linea = br.readLine(); linea = linea.toUpperCase();
 
 		switch (linea) {
 			case "LISTAR":
@@ -214,7 +221,7 @@ public class Restaurante {
 	}
 	public static void ejecutarMesa(Restaurante restaurante,
 			BufferedReader br) throws IOException {
-		String linea = br.readLine();
+		String linea = br.readLine(); linea = linea.toUpperCase();
 
 		switch (linea) {
 			case "LISTAR":
