@@ -1,9 +1,9 @@
 package main.java.com.lab.restaurant.transaction.services;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
+import main.java.com.lab.restaurant.constantes.OrigenDatos;
 import main.java.com.lab.restaurant.model.Mesero;
 import main.java.com.lab.restaurant.transaction.dao.DaoFactory;
 import main.java.com.lab.restaurant.transaction.dao.DaoManager;
@@ -12,7 +12,7 @@ public class MeseroService implements DaoManager<Mesero> {
 
 	VisitaService visitaService = new VisitaService();
 
-	DaoFactory daoFactory = DaoFactory.getDaoFactory(DaoFactory.LOCAL);
+	DaoFactory daoFactory = DaoFactory.getDaoFactory(OrigenDatos.ORIGEN);
 
 	DaoManager<Mesero> meseroDao = daoFactory.getMeseroDao();
 
