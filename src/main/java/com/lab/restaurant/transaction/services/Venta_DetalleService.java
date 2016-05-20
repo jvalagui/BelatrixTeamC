@@ -2,12 +2,13 @@ package main.java.com.lab.restaurant.transaction.services;
 
 import java.util.List;
 
+import main.java.com.lab.restaurant.constantes.OrigenDatos;
 import main.java.com.lab.restaurant.model.Venta_Detalle;
 import main.java.com.lab.restaurant.transaction.dao.DaoFactory;
 import main.java.com.lab.restaurant.transaction.dao.DaoManager;
 
 public class Venta_DetalleService implements DaoManager<Venta_Detalle> {
-	DaoFactory daoFactory = DaoFactory.getDaoFactory(DaoFactory.LOCAL);
+	DaoFactory daoFactory = DaoFactory.getDaoFactory(OrigenDatos.ORIGEN);
 	DaoManager<Venta_Detalle> ventaDetalleDao = daoFactory.getVenta_DetalleDao();
 
 	@Override
