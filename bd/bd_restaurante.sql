@@ -21,6 +21,8 @@ USE `bd_restaurante` ;
 -- -----------------------------------------------------
 -- Table `bd_restaurante`.`tb_persona`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `bd_restaurante`.`tb_persona` ;
+
 CREATE TABLE IF NOT EXISTS `bd_restaurante`.`tb_persona` (
   `id_persona` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
   `dni_persona` CHAR(8) NOT NULL COMMENT '',
@@ -36,6 +38,8 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `bd_restaurante`.`tb_cliente`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `bd_restaurante`.`tb_cliente` ;
+
 CREATE TABLE IF NOT EXISTS `bd_restaurante`.`tb_cliente` (
   `id_cliente` INT(11) NOT NULL COMMENT '',
   PRIMARY KEY (`id_cliente`)  COMMENT '',
@@ -49,6 +53,8 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `bd_restaurante`.`tb_mesa`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `bd_restaurante`.`tb_mesa` ;
+
 CREATE TABLE IF NOT EXISTS `bd_restaurante`.`tb_mesa` (
   `id_mesa` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
   `usada_mesa` TINYINT(1) NOT NULL COMMENT '',
@@ -61,6 +67,8 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `bd_restaurante`.`tb_mesero`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `bd_restaurante`.`tb_mesero` ;
+
 CREATE TABLE IF NOT EXISTS `bd_restaurante`.`tb_mesero` (
   `id_mesero` INT(11) NOT NULL COMMENT '',
   PRIMARY KEY (`id_mesero`)  COMMENT '',
@@ -74,6 +82,8 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `bd_restaurante`.`tb_producto`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `bd_restaurante`.`tb_producto` ;
+
 CREATE TABLE IF NOT EXISTS `bd_restaurante`.`tb_producto` (
   `id_producto` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
   `descrip_producto` VARCHAR(50) NOT NULL COMMENT '',
@@ -91,6 +101,8 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `bd_restaurante`.`tb_visita`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `bd_restaurante`.`tb_visita` ;
+
 CREATE TABLE IF NOT EXISTS `bd_restaurante`.`tb_visita` (
   `id_visita` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
   `id_cliente` INT(11) NOT NULL COMMENT '',
@@ -118,6 +130,8 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `bd_restaurante`.`tb_venta`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `bd_restaurante`.`tb_venta` ;
+
 CREATE TABLE IF NOT EXISTS `bd_restaurante`.`tb_venta` (
   `id_venta` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
   `numero_venta` CHAR(6) NOT NULL COMMENT '',
@@ -137,6 +151,8 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `bd_restaurante`.`tb_venta_detalle`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `bd_restaurante`.`tb_venta_detalle` ;
+
 CREATE TABLE IF NOT EXISTS `bd_restaurante`.`tb_venta_detalle` (
   `id_venta` INT(11) NOT NULL COMMENT '',
   `id_producto` INT(11) NOT NULL COMMENT '',
@@ -158,12 +174,16 @@ USE `bd_restaurante` ;
 -- procedure usp_cliente_create
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_cliente_create`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_cliente_create`(id INT, dni CHAR(8), nombre VARCHAR(30), ape_pat VARCHAR(30), ape_mat VARCHAR(30))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_cliente_create`(OUT id INT, dni CHAR(8), nombre VARCHAR(30), ape_pat VARCHAR(30), ape_mat VARCHAR(30))
 BEGIN
 	INSERT tb_persona VALUES(null, dni, nombre, ape_pat, ape_mat);
 	INSERT tb_cliente VALUES(LAST_INSERT_ID());
+    SELECT LAST_INSERT_ID() INTO id;
 END$$
 
 DELIMITER ;
@@ -171,6 +191,9 @@ DELIMITER ;
 -- -----------------------------------------------------
 -- procedure usp_cliente_delete
 -- -----------------------------------------------------
+
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_cliente_delete`;
 
 DELIMITER $$
 USE `bd_restaurante`$$
@@ -186,6 +209,9 @@ DELIMITER ;
 -- procedure usp_cliente_obtain
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_cliente_obtain`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_cliente_obtain`(id INT)
@@ -198,6 +224,9 @@ DELIMITER ;
 -- -----------------------------------------------------
 -- procedure usp_cliente_read
 -- -----------------------------------------------------
+
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_cliente_read`;
 
 DELIMITER $$
 USE `bd_restaurante`$$
@@ -212,6 +241,9 @@ DELIMITER ;
 -- procedure usp_cliente_update
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_cliente_update`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_cliente_update`(id INT, dni CHAR(8), nombre VARCHAR(30), ape_pat VARCHAR(30), ape_mat VARCHAR(30))
@@ -225,11 +257,15 @@ DELIMITER ;
 -- procedure usp_mesa_create
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_mesa_create`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_mesa_create`(id INT, usada INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_mesa_create`(OUT id INT, usada INT)
 BEGIN
 	INSERT tb_mesa VALUES(id, usada);
+    SELECT LAST_INSERT_ID() INTO id;
 END$$
 
 DELIMITER ;
@@ -237,6 +273,9 @@ DELIMITER ;
 -- -----------------------------------------------------
 -- procedure usp_mesa_delete
 -- -----------------------------------------------------
+
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_mesa_delete`;
 
 DELIMITER $$
 USE `bd_restaurante`$$
@@ -251,6 +290,9 @@ DELIMITER ;
 -- procedure usp_mesa_obtain
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_mesa_obtain`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_mesa_obtain`(id INTEGER)
@@ -263,6 +305,9 @@ DELIMITER ;
 -- -----------------------------------------------------
 -- procedure usp_mesa_read
 -- -----------------------------------------------------
+
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_mesa_read`;
 
 DELIMITER $$
 USE `bd_restaurante`$$
@@ -277,6 +322,9 @@ DELIMITER ;
 -- procedure usp_mesa_update
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_mesa_update`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_mesa_update`(id INT, usada INT)
@@ -290,12 +338,16 @@ DELIMITER ;
 -- procedure usp_mesero_create
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_mesero_create`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_mesero_create`(id INT, dni CHAR(8), nombre VARCHAR(30), ape_pat VARCHAR(30), ape_mat VARCHAR(30))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_mesero_create`(OUT id INT, dni CHAR(8), nombre VARCHAR(30), ape_pat VARCHAR(30), ape_mat VARCHAR(30))
 BEGIN
 	INSERT tb_persona VALUES(null, dni, nombre, ape_pat, ape_mat);
 	INSERT tb_mesero VALUES(LAST_INSERT_ID());
+    SELECT LAST_INSERT_ID() INTO id;
 END$$
 
 DELIMITER ;
@@ -303,6 +355,9 @@ DELIMITER ;
 -- -----------------------------------------------------
 -- procedure usp_mesero_delete
 -- -----------------------------------------------------
+
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_mesero_delete`;
 
 DELIMITER $$
 USE `bd_restaurante`$$
@@ -318,6 +373,9 @@ DELIMITER ;
 -- procedure usp_mesero_obtain
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_mesero_obtain`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_mesero_obtain`(id INT)
@@ -330,6 +388,9 @@ DELIMITER ;
 -- -----------------------------------------------------
 -- procedure usp_mesero_read
 -- -----------------------------------------------------
+
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_mesero_read`;
 
 DELIMITER $$
 USE `bd_restaurante`$$
@@ -344,6 +405,9 @@ DELIMITER ;
 -- procedure usp_mesero_update
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_mesero_update`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_mesero_update`(id INT, dni CHAR(8), nombre VARCHAR(30), ape_pat VARCHAR(30), ape_mat VARCHAR(30))
@@ -357,11 +421,15 @@ DELIMITER ;
 -- procedure usp_producto_create
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_producto_create`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_producto_create`(id INT, descrip VARCHAR(50), tipo INT, categoria INT, costo DOUBLE, precio DOUBLE, stock INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_producto_create`(OUT id INT, descrip VARCHAR(50), tipo INT, categoria INT, costo DOUBLE, precio DOUBLE, stock INT)
 BEGIN
 	INSERT tb_producto VALUES(id, descrip, tipo, categoria, costo, precio, stock);
+    SELECT LAST_INSERT_ID() INTO id;
 END$$
 
 DELIMITER ;
@@ -369,6 +437,9 @@ DELIMITER ;
 -- -----------------------------------------------------
 -- procedure usp_producto_delete
 -- -----------------------------------------------------
+
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_producto_delete`;
 
 DELIMITER $$
 USE `bd_restaurante`$$
@@ -383,6 +454,9 @@ DELIMITER ;
 -- procedure usp_producto_obtain
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_producto_obtain`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_producto_obtain`(id INTEGER)
@@ -396,6 +470,9 @@ DELIMITER ;
 -- procedure usp_producto_read
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_producto_read`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_producto_read`()
@@ -408,6 +485,9 @@ DELIMITER ;
 -- -----------------------------------------------------
 -- procedure usp_producto_update
 -- -----------------------------------------------------
+
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_producto_update`;
 
 DELIMITER $$
 USE `bd_restaurante`$$
@@ -424,11 +504,15 @@ DELIMITER ;
 -- procedure usp_venta_create
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_venta_create`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_venta_create`(id INT, numero CHAR(6), fecha DATETIME, total DOUBLE, id_visita INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_venta_create`(OUT id INT, numero CHAR(6), fecha DATETIME, total DOUBLE, id_visita INT)
 BEGIN
-	INSERT tb_venta VALUES(id, numero, fecha, total, id_visita);
+	INSERT tb_venta VALUES(null, numero, fecha, total, id_visita);
+    SELECT LAST_INSERT_ID() INTO id;
 END$$
 
 DELIMITER ;
@@ -436,6 +520,9 @@ DELIMITER ;
 -- -----------------------------------------------------
 -- procedure usp_venta_delete
 -- -----------------------------------------------------
+
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_venta_delete`;
 
 DELIMITER $$
 USE `bd_restaurante`$$
@@ -450,6 +537,9 @@ DELIMITER ;
 -- procedure usp_venta_detalle_create
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_venta_detalle_create`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_venta_detalle_create`(id_ven INT, id_prod INT, cant INT)
@@ -462,6 +552,9 @@ DELIMITER ;
 -- -----------------------------------------------------
 -- procedure usp_venta_detalle_delete
 -- -----------------------------------------------------
+
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_venta_detalle_delete`;
 
 DELIMITER $$
 USE `bd_restaurante`$$
@@ -476,6 +569,9 @@ DELIMITER ;
 -- procedure usp_venta_detalle_obtain
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_venta_detalle_obtain`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_venta_detalle_obtain`(id_ven INT, id_prod INT)
@@ -489,6 +585,9 @@ DELIMITER ;
 -- procedure usp_venta_detalle_read
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_venta_detalle_read`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_venta_detalle_read`()
@@ -501,6 +600,9 @@ DELIMITER ;
 -- -----------------------------------------------------
 -- procedure usp_venta_detalle_update
 -- -----------------------------------------------------
+
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_venta_detalle_update`;
 
 DELIMITER $$
 USE `bd_restaurante`$$
@@ -516,6 +618,9 @@ DELIMITER ;
 -- procedure usp_venta_obtain
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_venta_obtain`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_venta_obtain`(id INTEGER)
@@ -529,6 +634,9 @@ DELIMITER ;
 -- procedure usp_venta_read
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_venta_read`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_venta_read`()
@@ -541,6 +649,9 @@ DELIMITER ;
 -- -----------------------------------------------------
 -- procedure usp_venta_update
 -- -----------------------------------------------------
+
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_venta_update`;
 
 DELIMITER $$
 USE `bd_restaurante`$$
@@ -556,11 +667,15 @@ DELIMITER ;
 -- procedure usp_visita_create
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_visita_create`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_visita_create`(id INT, idcli INT, idmese INT, idmesa INT, estadovisita INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_visita_create`(OUT id INT, idcli INT, idmese INT, idmesa INT, estadovisita INT)
 BEGIN
-	INSERT tb_visita VALUES(id, idcli, idmese, idmesa, estadovisita);
+	INSERT tb_visita VALUES(null, idcli, idmese, idmesa, estadovisita);
+    SELECT LAST_INSERT_ID() INTO id;
 END$$
 
 DELIMITER ;
@@ -568,6 +683,9 @@ DELIMITER ;
 -- -----------------------------------------------------
 -- procedure usp_visita_delete
 -- -----------------------------------------------------
+
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_visita_delete`;
 
 DELIMITER $$
 USE `bd_restaurante`$$
@@ -582,6 +700,9 @@ DELIMITER ;
 -- procedure usp_visita_obtain
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_visita_obtain`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_visita_obtain`(id INTEGER)
@@ -595,6 +716,9 @@ DELIMITER ;
 -- procedure usp_visita_read
 -- -----------------------------------------------------
 
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_visita_read`;
+
 DELIMITER $$
 USE `bd_restaurante`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_visita_read`()
@@ -607,6 +731,9 @@ DELIMITER ;
 -- -----------------------------------------------------
 -- procedure usp_visita_update
 -- -----------------------------------------------------
+
+USE `bd_restaurante`;
+DROP procedure IF EXISTS `bd_restaurante`.`usp_visita_update`;
 
 DELIMITER $$
 USE `bd_restaurante`$$
