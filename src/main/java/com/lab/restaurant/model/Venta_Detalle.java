@@ -34,6 +34,12 @@ public class Venta_Detalle {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
+
+	@Override
+	public String toString() {
+		return "Venta_Detalle [idVenta=" + idVenta + ", idProducto="
+				+ idProducto + ", cantidad=" + cantidad + "]";
+	}
 	
 	
 }
