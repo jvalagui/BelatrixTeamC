@@ -3,6 +3,7 @@ package main.java.com.lab.restaurant.transaction.daoimpl;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class MySQLVentaDao implements DaoManager<Venta> {
 						rs.getDouble(4), rs.getInt(5));
 				lista.add(venta);
 			}
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		return lista;
@@ -47,7 +48,7 @@ public class MySQLVentaDao implements DaoManager<Venta> {
 				venta = new Venta(rs.getInt(1), rs.getString(2), rs.getTimestamp(3),
 						rs.getDouble(4), rs.getInt(5));
 			}
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		return venta;
@@ -65,7 +66,7 @@ public class MySQLVentaDao implements DaoManager<Venta> {
 			statement.setDouble(4, venta.getTotalVenta());
 			statement.setInt(5, venta.getIdVisita());
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
@@ -83,7 +84,7 @@ public class MySQLVentaDao implements DaoManager<Venta> {
 			statement.setDouble(4, venta.getTotalVenta());
 			statement.setInt(5, venta.getIdVisita());
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
@@ -98,7 +99,7 @@ public class MySQLVentaDao implements DaoManager<Venta> {
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, id);
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
