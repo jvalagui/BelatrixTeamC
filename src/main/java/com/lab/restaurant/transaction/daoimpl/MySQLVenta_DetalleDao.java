@@ -3,6 +3,7 @@ package main.java.com.lab.restaurant.transaction.daoimpl;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class MySQLVenta_DetalleDao implements DaoManager<Venta_Detalle> {
 			if(rs.next()){
 				ventaDetalle = new Venta_Detalle(rs.getInt(1), rs.getInt(2), rs.getInt(3));
 			}
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		return ventaDetalle;
@@ -61,7 +62,7 @@ public class MySQLVenta_DetalleDao implements DaoManager<Venta_Detalle> {
 			statement.setInt(2, ventaDetalle.getIdProducto());
 			statement.setInt(3, ventaDetalle.getCantidad());
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
@@ -77,7 +78,7 @@ public class MySQLVenta_DetalleDao implements DaoManager<Venta_Detalle> {
 			statement.setInt(2, ventaDetalle.getIdProducto());
 			statement.setInt(3, ventaDetalle.getCantidad());
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
@@ -91,7 +92,7 @@ public class MySQLVenta_DetalleDao implements DaoManager<Venta_Detalle> {
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, id);
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		

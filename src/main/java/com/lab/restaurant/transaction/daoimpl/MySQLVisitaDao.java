@@ -3,6 +3,7 @@ package main.java.com.lab.restaurant.transaction.daoimpl;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class MySQLVisitaDao implements DaoManager<Visita>{
 				Visita visita = new Visita(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
 				lista.add(visita);
 			}
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		return lista;
@@ -45,7 +46,7 @@ public class MySQLVisitaDao implements DaoManager<Visita>{
 			if(rs.next()){
 				visita = new Visita(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
 			}
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
@@ -64,7 +65,7 @@ public class MySQLVisitaDao implements DaoManager<Visita>{
 			statement.setInt(4, visita.getIdMesa());
 			statement.setInt(5, visita.getEstado());
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
@@ -82,7 +83,7 @@ public class MySQLVisitaDao implements DaoManager<Visita>{
 			statement.setInt(4, visita.getIdMesa());
 			statement.setInt(5, visita.getEstado());
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
@@ -96,7 +97,7 @@ public class MySQLVisitaDao implements DaoManager<Visita>{
 			CallableStatement statement = cn.prepareCall(sql);
 			statement.setInt(1, id);
 			statement.executeUpdate();
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			ex.printStackTrace();
 		}
 		
