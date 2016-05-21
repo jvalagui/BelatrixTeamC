@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import main.java.com.lab.restaurant.model.Cliente;
 import main.java.com.lab.restaurant.model.Mesa;
 import main.java.com.lab.restaurant.model.Mesero;
+import main.java.com.lab.restaurant.transaction.Comedor;
 import main.java.com.lab.restaurant.transaction.Recepcion;
 import main.java.com.lab.restaurant.transaction.services.ClienteService;
 import main.java.com.lab.restaurant.transaction.services.MesaService;
@@ -21,6 +22,7 @@ public class Restaurante {
 	MeseroService meseroService = new MeseroService();
 	MesaService mesaService = new MesaService();
 	Recepcion recepcion = new Recepcion();
+	Comedor comedor = new Comedor();
 
 	public static void main(String[] args) {
 		Restaurante restaurante = new Restaurante();
@@ -142,6 +144,12 @@ public class Restaurante {
 					System.out.println("Error al registrar visita. Compruebe que los datos sean ingresados correctamente.");
 				}
 				break;
+			case "GESTIONAR PEDIDO":
+				System.out.println("Ingrese el id de la visita. Ejemplo: 1");
+				linea = br.readLine();
+				int idVisita = Integer.valueOf(linea);
+				gestionarPedido(idVisita, br, restaurante);
+				break;
 			case "DESPEDIR":
 				System.out.println("Ingrese el id de la visita");
 				linea = br.readLine();
@@ -168,6 +176,55 @@ public class Restaurante {
 				System.out.println("Saliendo..\n");
 				break;
 		}
+	}
+
+	private static void gestionarPedido(int idVisita, BufferedReader br, Restaurante restaurante) 
+			throws IOException {
+		while(true){
+			System.out.println("INGRESE UN COMANDO: AGREGAR PRODUCTO / REMOVER PRODUCTO / REGRESAR");
+			String linea = br.readLine();
+			
+			switch (linea) {
+			case "AGREGAR PRODUCTO":
+				System.out.println("El id del producto que desea ordenar y la cantidad." +
+						"Ejemplo: 1, 4");
+				linea = br.readLine();
+				try{
+					String[] datos = linea.split(",");
+					if(datos.length<2){throw new Exception();}
+					int idProducto = Integer.valueOf(datos[0].trim());
+					int cantidadRequerida = Integer.valueOf(datos[1].trim());
+					int productoDisponible = restaurante.comedor.productoDisponible(idProducto, cantidadRequerida);
+					if (productoDisponible == -1) {
+						System.out.println("El producto seleccionado no existe en stock"); break;
+					}else if(productoDisponible == 0){
+						System.out.println("No hay suficiente stock del producto seleccionado"); break;
+					}else{
+						restaurante.comedor.agregarProductoACarritoDeVisita(idVisita, idProducto, cantidadRequerida);
+						System.out.println("Producto agregado al pedido de la visita");
+					}
+				}catch(Exception e){
+					System.out.println("Error al registrar el pedido. Compruebe que los datos sean ingresados correctamente");
+				}
+				break;
+			case "REMOVER PRODUCTO":
+				System.out.println("El id del producto que desea remover del pedido." +
+						"Ejemplo: 1");
+				try{
+					int idProducto = Integer.parseInt(br.readLine().trim());
+					restaurante.comedor.eliminarProductoDeCarritoDeVisita(idVisita, idProducto);
+				}catch(Exception e){
+					System.out.println("Error al remover el producto. Compruebe que los datos sean ingresados correctamente");
+				}
+				break;
+			case "REGRESAR":
+				return;
+			default:
+				System.out.println("Comando incorrecto");
+				break;
+			}
+		}
+		
 	}
 
 	public static void ejecutarCliente(Restaurante restaurante,

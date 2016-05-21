@@ -5,15 +5,21 @@ import java.util.List;
 
 import main.java.com.lab.restaurant.model.Mesa;
 import main.java.com.lab.restaurant.model.Mesero;
+import main.java.com.lab.restaurant.model.Producto;
 import main.java.com.lab.restaurant.model.Visita;
 import main.java.com.lab.restaurant.transaction.services.MesaService;
 import main.java.com.lab.restaurant.transaction.services.MeseroService;
+import main.java.com.lab.restaurant.transaction.services.ProductoService;
 import main.java.com.lab.restaurant.transaction.services.VisitaService;
+import main.java.com.lab.restaurant.utils.Carrito;
+import main.java.com.lab.restaurant.utils.Pedidos;
 
 public class Comedor{
 	MesaService mesaService = new MesaService();
 	MeseroService meseroService = new MeseroService();
 	VisitaService visitaService = new VisitaService();
+	ProductoService productoService = new ProductoService();
+	static Pedidos pedidosVisitas = new Pedidos();
 
 	private List<Mesa> listaMesas = mesaService.read();
 	private List<Mesero> listaMeseros = meseroService.read();
@@ -80,4 +86,47 @@ public class Comedor{
 		mesa.setUsada(false);
 	}
 	
+	// Determina si un producto existe en el inventario o si existe la cantidad suficiente de este
+	public int productoDisponible(int idProducto, int cantidadRequerida){
+		int disponible = -1;
+		Producto producto = productoService.read(idProducto); 
+		if(producto == null){
+			return disponible;
+		}
+		if(producto.getStock()-cantidadRequerida < 0){
+			disponible = 0;
+		}else{
+			disponible = 1;
+		}
+		return disponible;
+	}
+	
+	public void agregarProductoACarritoDeVisita(int idVisita, int idProducto, int cantidad){
+		Carrito carrito = null;
+		if(pedidosVisitas.containsKey(idVisita)){
+			if((carrito = pedidosVisitas.get(idVisita)).containsKey(idProducto)){
+				modificarProductoDeCarritoDeVisita(idVisita, idProducto, cantidad);
+			}else{
+				agregarProductoACarrito(idVisita, idProducto, cantidad, carrito);
+			}
+		}else{
+			carrito = new Carrito();
+			agregarProductoACarrito(idVisita, idProducto, cantidad, carrito);
+		}
+	}
+
+	private void agregarProductoACarrito(int idVisita, int idProducto, int cantidad, Carrito carrito) {
+		carrito.put(idProducto, cantidad);
+		pedidosVisitas.put(idVisita, carrito);
+	}
+	
+	public void modificarProductoDeCarritoDeVisita(int idVisita, int idProducto, int cantidad){
+		Carrito carrito = pedidosVisitas.get(idVisita);
+		carrito.replace(idProducto, cantidad);
+	}
+	
+	public void eliminarProductoDeCarritoDeVisita(int idVisita, int idProducto){
+		Carrito carrito = pedidosVisitas.get(idVisita);
+		carrito.remove(idProducto);
+	}
 }

@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import main.java.com.lab.restaurant.transaction.services.ProductoService;
 
-public class Pedido extends HashMap<Integer, Integer> implements Serializable{
+public class Carrito extends HashMap<Integer, Integer> implements Serializable{
 
 	/**
 	 * 
@@ -23,6 +23,13 @@ public class Pedido extends HashMap<Integer, Integer> implements Serializable{
 	public Integer put(Integer idProducto, Integer cantidad) {
 		return super.put(idProducto, cantidad);
 	}
+	
+
+	@Override
+	public Integer replace(Integer idProducto, Integer cantidad) {
+		// TODO Auto-generated method stub
+		return super.replace(idProducto, cantidad);
+	}
 
 	@Override
 	public Integer remove(Object idProducto) {
@@ -32,7 +39,7 @@ public class Pedido extends HashMap<Integer, Integer> implements Serializable{
 	public double getTotal(){
 		
 		double montoTotal = keySet().stream()
-							.mapToDouble(idProducto -> productoService.read(idProducto).getPrecio())
+							.mapToDouble(idProducto -> productoService.read(idProducto).getPrecio()*get(idProducto))
 							.sum();
 		
 		return montoTotal;
