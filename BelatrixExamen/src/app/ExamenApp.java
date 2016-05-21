@@ -133,7 +133,6 @@ public class ExamenApp {
 				
 			}
 		}
-		System.out.println(filteredPhoneList);
 		for(Phone phoneItem : filteredPhoneList){
 			Organization organization = organizationBehavior.read(phoneItem.getOrganizationId()-1);
 			organizationList.add(organization);

@@ -39,6 +39,11 @@ public class Email {
 	public Email(){
 		
 	}
+	@Override
+	public String toString() {
+		return "Email [emailId=" + emailId + ", emailName=" + emailName + ", personId=" + personId + ", organizationId="
+				+ organizationId + "]";
+	}
 	
 	
 }

@@ -20,7 +20,7 @@ public class PersonCountryBehavior implements Crud<PersonCountry>{
 
 	@Override
 	public void create(PersonCountry object) {
-		// TODO Auto-generated method stub
+		listPersonCountry.add(object);
 		
 	}
 	

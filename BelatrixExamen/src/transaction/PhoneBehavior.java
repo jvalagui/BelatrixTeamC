@@ -22,8 +22,7 @@ public class PhoneBehavior implements Crud<Phone>{
 
 	@Override
 	public void create(Phone object) {
-		// TODO Auto-generated method stub
-		
+		phoneList.add(object);
 	}
 
 }

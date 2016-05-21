@@ -21,7 +21,7 @@ public class OperatorBehavior implements Crud<Operator>{
 
 	@Override
 	public void create(Operator object) {
-		// TODO Auto-generated method stub
+		operatorList.add(object);
 		
 	}
 

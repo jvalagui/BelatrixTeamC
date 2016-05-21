@@ -59,6 +59,12 @@ public class Phone {
 	public void setOrganizationId(int organizationId) {
 		this.organizationId = organizationId;
 	}
+
+	@Override
+	public String toString() {
+		return "Phone [phoneId=" + phoneId + ", phoneNumber=" + phoneNumber + ", personId=" + personId + ", operatorId="
+				+ operatorId + ", organizationId=" + organizationId + "]";
+	}
 	
 	
 	
