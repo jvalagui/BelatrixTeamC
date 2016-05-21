@@ -29,6 +29,9 @@ public class App {
 		
 		BufferedReader in = new BufferedReader(
 				new InputStreamReader(System.in));
+		
+		
+		
 		try{
 			while(true){
 				System.out.println("COUNTRY / DOCTYPE / EMAIL / ORG / PERSON / PHONE / PHONEOPERATOR");
@@ -63,7 +66,6 @@ public class App {
 					break;
 				case"PERSON":
 					System.out.println("LIST / PHONES");
-					
 					line = in.readLine();
 					line = line.toUpperCase();
 					switch(line){

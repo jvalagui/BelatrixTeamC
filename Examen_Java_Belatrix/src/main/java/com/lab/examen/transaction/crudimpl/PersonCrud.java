@@ -19,7 +19,7 @@ private static List<Person> list = new ArrayList<Person>();
 	
 	public void update(Person person) {
 		for(Person item : list){
-			if(item.getDni()==person.getDni()){
+			if(item.getDni().equals(person.getDni())){
 				list.set(list.indexOf(item), person);
 			}
 		}
@@ -32,7 +32,7 @@ private static List<Person> list = new ArrayList<Person>();
 
 	public Person read(String dni){
 		for(Person item : list){
-			if(item.getDni()==dni){
+			if(item.getDni().equals(dni)){
 				return item;
 			}
 		}
@@ -42,7 +42,7 @@ private static List<Person> list = new ArrayList<Person>();
 	
 	public void delete(String dni){
 		for(Person item : list){
-			if(item.getDni() == dni){
+			if(item.getDni().equals(dni)){
 				list.remove(item);
 			}
 		}

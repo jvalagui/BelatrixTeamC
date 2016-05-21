@@ -98,24 +98,31 @@ public class Person {
 
 	public List<Email> getEmails() {
 
-		emails = emailService.emailsPerPerson(dni);
+		if (emails == null) {
+			emails = emailService.emailsPerPerson(dni);
+		}
 
 		return emails;
 	}
 
 	public List<Phone> getPhones() {
-		phones = phoneService.emailsPerPerson(dni);
+		if (phones == null) {
+			phones = phoneService.emailsPerPerson(dni);
+		}
 		return phones;
 	}
 
 	public Country getCountry() {
-		country = countryService.read(idCountry);
-
+		if (country == null) {
+			country = countryService.read(idCountry);
+		}
 		return country;
 	}
 
 	public DocumentType getDocumentType() {
-		documentType = documentTypeService.read(idDocumentType);
+		if (documentType == null) {
+			documentType = documentTypeService.read(idDocumentType);
+		}
 
 		return documentType;
 	}
